@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--设置移动端访问缩放效果-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!--引入semantic-ui框架-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+
+    <link rel="stylesheet" href="./static/css/me.css">
+    <title>博客详情</title>
+</head>
+
+<body>
+
+<!--导航-->
+<!--ui:表示使用semantic提供的UI组件-->
+<!--inverted:反转颜色-->
+<!--attached:附加，连接，将两个片段连到一起，圆角-->
+<!--segment:片段（UI组件）-->
+<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <!--container:容器，包裹的元素会有响应式展现效果-->
+    <div class="ui container">
+        <!--menu:菜单（UI组件）-->
+        <!--secondary:一种UI样式-->
+        <!--stackable:适应手机端响应样式，可堆叠的-->
+        <div class="ui inverted secondary stackable menu">
+            <!--header:头样式-->
+            <!--item:项（UI组件）-->
+            <h2 class="ui teal header item">派可数据</h2>
+            <!--i标签:显示斜体文本效果。-->
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini user icon"></i>关于我</a>
+            <div class="right m-item item m-mobile-hide">
+                <!--transparent:透明效果-->
+                <div class="ui icon inverted transparent input">
+                    <!--placeholder:占位符、该属性提供可描述输入字段预期值的提示信息（hint）-->
+                    <!--placeholder:该提示会在输入字段为空时显示，并会在字段获得焦点时消失-->
+                    <!--placeholder:该属性适用于以下的 <input> 类型：text, search, url, telephone, email 以及 password-->
+                    <input type="text" placeholder="搜索">
+                    <!--link:鼠标悬浮时，展示为小手的样式-->
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+<!--中间内容-->
+<div class="m-padded-tb-big m-container-small">
+    <div class="ui container">
+        <!--头部-->
+        <div class="ui top attached segment">
+            <div class="ui horizontal link list">
+                <!--头像+昵称-->
+                <div class="item">
+                    <!--avatar:圆形图片-->
+                    <img src="https://picsum.photos/id/1027/100/100" alt="" class="ui avatar image">
+                    <div class="content">
+                        <a href="#" class="header">潇洒郭</a>
+                    </div>
+                </div>
+                <!--更新日期-->
+                <div class="item">
+                    <i class="calendar icon"></i>2019-08-18
+                </div>
+                <!--浏览次数-->
+                <div class="item">
+                    <i class="eye icon"></i>5566
+                </div>
+            </div>
+        </div>
+        <!--图片区域-->
+        <div class="ui attached segment">
+            <img src="https://picsum.photos/id/1035/800/450" alt="" class="ui fluid rounded image">
+        </div>
+        <!--内容-->
+        <div class="ui attached padded segment">
+            <div class="ui right aligned basic segment">
+                <div class="ui basic orange label">原创</div>
+            </div>
+            <!--标题-->
+            <h2 class="ui center aligned header">关于刻意练习的清单</h2>
+            <!--文章正文-->
+            <div id="content" class="m-padded-lr-responsive m-padded-tb-large">
+                <p>不论在什么行业或领域，提高技能与能力的最有效方法全都遵循一系列普遍原则，就是刻意练习。成为任何领域高手的关键因素不是文化，
+                    不是艺术，不是哲学，不是制度，不是自虐，而是刻意练习。</p>
+                <h2>1</h2>
+                <p>关于刻意练习，被误读最久的一个概念是“一万小时定律”。事实上，想把自己变成高手，光知道“一万小时”毫无意义，因为真正的关键根本
+                    不在训练时间，而是训练的方法。</p>
+                <h2>2</h2>
+                <p>功夫就在功夫上，“功夫在诗外”就是一句谎言。技能是人脑中的一种硬件结构，是“长”在人脑中的。要高度针对性地重复练习基本功，
+                    想要学什么功夫，就应该练什么功夫。</p>
+                <h2>3</h2>
+                <p>心理学家把人的知识和技能分为层层嵌套的三个圆形区域：最内一层是“舒适区”，是我们已经熟练掌握的各种技能；最外一层是“恐慌区”，
+                    是我们暂时无法学会的技能；二者中间则是“学习区”。</p>
+                <h2>4</h2>
+                <p>
+                    在“舒适区”做事，叫生活；在“学习区”做事，才叫练习。有效的练习必须发生在“学习区”，一旦你学会了某个东西，就不该在上面继续
+                    花时间，要立即转入下一个难度。凡是达到“我闭着眼睛都能……”这个程度的人都废了，高手不会闭着眼睛做事。</p>
+                <h2>5</h2>
+                <p>
+                    只有结果可控的领域，刻意练习才有用。股市是不可控的，所以刻意练习预测股市很可能就没用。有严格固定规则的领域，练习的作用最大，
+                    比如国际象棋；没有严格规则的领域，练习的作用则非常有限，如编程、航空飞行、广告创意。</p>
+                <h2>6</h2>
+                <p>把要训练的内容分成有针对性的小块，对每一个小块进行重复练习。艺术家要采风，棋手要打谱，律师要学案例，政客要读历史，
+                    科学家要看论文。宁可定期坚持发几篇灌水小文章，也比苦读10年期待一鸣惊人强。</p>
+                <h2>7</h2>
+                <p>
+                    刻意练习的关键是随时获得有效的反馈。你需要一个旁观者，他不见得水平比你高，不需要经常跟你谈心，不用激发你的战斗热情，
+                    但他必须给你提供三步反馈：演示一遍正确动作，表现一遍错误动作，再演示一遍正确动作。</p>
+                <h2>总结</h2>
+                <p>考试是最好的反馈。熟悉并不等于理解，想要真正理解，唯一的办法是考试和测验。没有经过测验，你的知识只是幻觉。</p>
+            </div>
+
+            <!--标签-->
+            <div class="m-padded-lr-responsive">
+                <!--pointing:小角效果-->
+                <div class="ui aligned basic teal left pointing label">方法论</div>
+            </div>
+
+            <!--赞赏-->
+            <div class="ui center aligned basic segment">
+                <!--circular:大圆角-->
+                <button id="payButton" class="ui basic circular orange button">赞赏</button>
+            </div>
+
+            <!--二维码-->
+            <div class="ui payQR flowing popup transition hidden">
+                <div class="ui orange basic label">
+                    <!--inherit:集成上层样式-->
+                    <!--images:默认样式字体大小为0-->
+                    <div class="ui images" style="font-size: inherit">
+                        <div class="image">
+                            <!--bordered:加边线-->
+                            <img src="./static/images/wechat.png" alt="" class="ui rounded bordered image"
+                                 style="width: 120px">
+                            <div>支付宝</div>
+                        </div>
+                        <div class="image">
+                            <img src="./static/images/wechat.png" alt="" class="ui rounded bordered image"
+                                 style="width: 120px">
+                            <div>微信</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--博客信息-->
+        <div class="ui attached positive message">
+            <div class="ui middle aligned grid">
+                <div class="eleven wide column">
+                    <ui class="list">
+                        <li>作者：潇洒郭（联系作者）</li>
+                        <li>发表时间：2019-08-19 21:50</li>
+                        <li>版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</li>
+                        <li>公众号转载：请在文末添加作者公众号二维码</li>
+                    </ui>
+                </div>
+                <div class="five wide column">
+                    <img src="./static/images/wechat.png" alt="" class="ui right floated image rounded bordered"
+                         style="width: 110px">
+                </div>
+            </div>
+        </div>
+        <!--留言区域-->
+        <div class="ui bottom attached segment">
+            <!--留言区域列表-->
+            <div class="ui teal segment">
+                <div class="ui comments">
+                    <h3 class="ui dividing header">评论</h3>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/id/1027/100/100">
+                        </a>
+                        <div class="content">
+                            <a class="author">Matt</a>
+                            <div class="metadata">
+                                <span class="date">Today at 5:42PM</span>
+                            </div>
+                            <div class="text">
+                                How artistic!
+                            </div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/id/1027/100/100">
+                        </a>
+                        <div class="content">
+                            <a class="author">Elliot Fu</a>
+                            <div class="metadata">
+                                <span class="date">Yesterday at 12:30AM</span>
+                            </div>
+                            <div class="text">
+                                <p>This has been very useful for my research. Thanks as well!</p>
+                            </div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                        <div class="comments">
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="https://picsum.photos/id/1027/100/100">
+                                </a>
+                                <div class="content">
+                                    <a class="author">Jenny Hess</a>
+                                    <div class="metadata">
+                                        <span class="date">Just now</span>
+                                    </div>
+                                    <div class="text">
+                                        Elliot you are always so right :)
+                                    </div>
+                                    <div class="actions">
+                                        <a class="reply">回复</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="https://picsum.photos/id/1027/100/100">
+                        </a>
+                        <div class="content">
+                            <a class="author">Joe Henderson</a>
+                            <div class="metadata">
+                                <span class="date">5 days ago</span>
+                            </div>
+                            <div class="text">
+                                Dude, this is awesome. Thanks so much
+                            </div>
+                            <div class="actions">
+                                <a class="reply">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--提交留言区域-->
+            <div class="ui form">
+                <!--评论内容-->
+                <div class="field">
+                    <textarea name="comment" placeholder="请输入评论信息..."></textarea>
+                </div>
+                <!--评论人信息-->
+                <div class="fields">
+                    <div class="field m-mobile-wide m-margin-bottom-small">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="nickname" placeholder="姓名">
+                        </div>
+                    </div>
+                    <div class="field m-mobile-wide m-margin-bottom-small">
+                        <div class="ui left icon input">
+                            <i class="mail icon"></i>
+                            <input type="text" name="email" placeholder="邮箱">
+                        </div>
+                    </div>
+                    <div class="field m-margin-bottom-small m-mobile-wide">
+                        <button class="ui teal button m-mobile-wide"><i class="send icon"></i>发布</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<!--底部footer-->
+<!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
+        <!--divided:显示分割线-->
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img src="./static/images/wechat.png" class="ui rounded image" alt="微信二维码"
+                             style="width:110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui header inverted m-text-spaced m-opacity-mini">最新博客</h4>
+                <!--list:列表（UI组件）-->
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（user story）</a>
+                    <a href="#" class="item">刻意联系</a>
+                    <a href="#" class="item">semantic-ui快速入门</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui header inverted m-text-spaced m-opacity-mini">联系我</h4>
+                <!--list:列表（UI组件）-->
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email：yongxiao.guo@packingdata.com</a>
+                    <a href="#" class="item">QQ：805372666</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui header inverted m-text-spaced m-opacity-mini">博客</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">
+                    这个派可数据的分享博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
+            </div>
+        </div>
+        <!--divider:分割线-->
+        <!--section:分割-->
+        <div class="ui section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">版权所有：北京派可数据科技有限公司©2017 京ICP备18044661号-2</p>
+    </div>
+</footer>
+
+<!--引入jquery-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<!--引入semantic-ui js-->
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+<script>
+    $('.menu.toggle').click(function () {
+        /*toggleClass，开关事件，开关样式*/
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('#payButton').popup({
+        popup: $('.payQR.popup'),
+        on: 'click',
+        position: 'bottom center'
+    });
+</script>
+</body>
+</html>

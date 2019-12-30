@@ -1,0 +1,150 @@
+/*semantic-ui框架有很多地方都加了!important，所以要想自定义样式，就得给自定义样式设置为！important级别*/
+/*!important:重要级别，将样式级别调到最高，覆盖其他样式*/
+
+body {
+    background-image: url("../images/bg.png");
+}
+
+/*---------------------------padding----------------------------*/
+.m-padded-mini {
+    padding: 0.2em !important;
+}
+
+.m-padded-tiny {
+    padding: 0.3em !important;
+}
+
+.m-padded-tb-mini {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+.m-padded-tb-tiny {
+    padding-top: 0.3em !important;
+    padding-bottom: 0.3em !important;
+}
+
+.m-padded-tb-small {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+}
+
+.m-padded-tb {
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+
+.m-padded-tb-large {
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+
+.m-padded-tb-big {
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+
+.m-padded-tb-huge {
+    padding-top: 4em !important;
+    padding-bottom: 4em !important;
+}
+
+.m-padded-tb-massive {
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+
+/*--------------------------margin-------------------*/
+.m-margin-top-small {
+    margin-top: 0.5em !important;
+}
+
+.m-margin-top {
+    margin-top: 1em !important;
+}
+
+.m-margin-top-large {
+    margin-top: 2em !important;
+}
+
+.m-margin-tb-tiny {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+}
+
+
+/*--------------position----------------*/
+.m-right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/*---------------------------text--------------------*/
+.m-text {
+    font-weight: 300 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.8 !important;
+}
+
+.m-text-thin {
+    font-weight: 300 !important;
+}
+
+/*字符间距*/
+.m-text-spaced {
+    letter-spacing: 1px !important;
+}
+
+.m-text-lined {
+    line-height: 1.8 !important;
+}
+
+/*-------------------------opacity-------------------*/
+/*透明度*/
+.m-opacity-mini {
+    opacity: 0.8 !important;
+}
+
+.m-opacity-tiny {
+    opacity: 0.6 !important;
+}
+
+
+/*-----------------------display------------------------*/
+.m-inline-block {
+    display: inline-block !important;
+}
+
+/*-------------------------container------------------*/
+.m-container {
+    max-width: 82em !important;
+    /*margin 简写属性在一个声明中设置所有外边距属性。该属性可以有 1 到 4 个值。*/
+    margin: auto !important;
+}
+
+.m-container-small {
+    max-width: 60em !important;
+    /*margin 简写属性在一个声明中设置所有外边距属性。该属性可以有 1 到 4 个值。*/
+    margin: auto !important;
+}
+
+/*-----------------------color--------------------------*/
+.m-black {
+    color: #333 !important;
+}
+
+.m-mobile-show {
+    display: none !important;
+}
+
+/*@media:媒体查询*/
+@media screen and (max-width: 768px) {
+    .m-mobile-hide {
+        display: none !important;
+    }
+
+    .m-mobile-show {
+        display: block !important;
+    }
+}
