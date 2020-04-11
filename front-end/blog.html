@@ -670,6 +670,19 @@ h5,h6{font-size:1em;}
     </div>
 </div>
 
+<!--工具条，按钮组-->
+<div class="m-fixed m-right-bottom m-padded">
+    <div class="ui vertical buttons ">
+        <button type="button" class="ui toc teal button">目录</button>
+        <a href="#comment-container" class="ui teal button">留言</a>
+        <button class="ui icon button"><i class="weixin icon"></i></button>
+        <a href="#" class="ui icon button"><i class="chevron up icon"></i></a>
+    </div>
+</div>
+<!--二维码-->
+<div class="ui toc-container flowing popup transition hidden">
+    生成的目录
+</div>
 <br>
 <br>
 
@@ -734,6 +747,11 @@ h5,h6{font-size:1em;}
         popup: $('.payQR.popup'),
         on: 'click',
         position: 'bottom center'
+    });
+    $('.toc.button').popup({
+        popup: $('.toc-container.popup'),
+        on: 'click',
+        position: 'left center'
     });
 </script>
 </body>
