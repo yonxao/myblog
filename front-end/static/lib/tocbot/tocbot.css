@@ -45,7 +45,7 @@ a.toc-link {
     background-color: #EEE;
     content: ' ';
     display: inline-block;
-    height: inherit;
+    height: 20px;
     left: 0;
     margin-top: -1px;
     position: absolute;
