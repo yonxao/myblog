@@ -67,7 +67,7 @@
 </nav>
 
 <!--中间内容-->
-<div class="m-padded-tb-big m-container-small animated fadeIn">
+<div id="waypoint" class="m-padded-tb-big m-container-small animated fadeIn">
     <div class="ui container">
         <!--头部-->
         <div class="ui top attached segment">
@@ -675,7 +675,7 @@ h5,h6{font-size:1em;}
 </div>
 
 <!--工具条，按钮组-->
-<div class="m-fixed m-right-bottom m-padded">
+<div id="toolbar" class="m-fixed m-right-bottom m-padded" style="display: none">
     <div class="ui vertical buttons ">
         <button type="button" class="ui toc teal button">目录</button>
         <a href="#comment-container" class="ui teal button">留言</a>
@@ -683,8 +683,8 @@ h5,h6{font-size:1em;}
         <div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i></div>
     </div>
 </div>
-<!--二维码-->
-<div class="ui toc-container flowing popup transition hidden" style="width: 300px !important;">
+<!--生成的目录-->
+<div class="ui toc-container flowing popup transition hidden" style="width: 250px !important;">
     <ol class="js-toc"></ol>
 </div>
 
@@ -753,6 +753,8 @@ h5,h6{font-size:1em;}
 <script src="./static/lib/tocbot/tocbot.min.js"></script>
 <!--引入二维码生成插件-->
 <script src="./static/lib/qrcode/qrcode.min.js"></script>
+<!--引入滚动侦测插件-->
+<script src="./static/lib/waypoints/jquery.waypoints.min.js"></script>
 
 <script>
     $('.menu.toggle').click(function () {
@@ -797,8 +799,20 @@ h5,h6{font-size:1em;}
     });
 
     $('#toTop-button').click(function () {
-        $(window).scrollTo(0,500);
+        $(window).scrollTo(0, 500);
     });
+
+    var waypoint = new Waypoint({
+        element: document.getElementById('waypoint'),
+        handler: function (direction) {
+            if (direction == 'down') {
+                $('#toolbar').show(500);
+            } else {
+                $('#toolbar').hide(500);
+            }
+            // console.log('Scrolled to waypoint!  ' + direction);
+        }
+    })
 
 </script>
 </body>
