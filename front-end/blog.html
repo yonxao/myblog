@@ -67,7 +67,7 @@
 </nav>
 
 <!--中间内容-->
-<div class="m-padded-tb-big m-container-small animated fadeInUp">
+<div class="m-padded-tb-big m-container-small animated fadeIn">
     <div class="ui container">
         <!--头部-->
         <div class="ui top attached segment">
@@ -679,7 +679,7 @@ h5,h6{font-size:1em;}
     <div class="ui vertical buttons ">
         <button type="button" class="ui toc teal button">目录</button>
         <a href="#comment-container" class="ui teal button">留言</a>
-        <button class="ui icon button"><i class="weixin icon"></i></button>
+        <button class="ui wechat icon button"><i class="weixin icon"></i></button>
         <a href="#" class="ui icon button"><i class="chevron up icon"></i></a>
     </div>
 </div>
@@ -687,6 +687,12 @@ h5,h6{font-size:1em;}
 <div class="ui toc-container flowing popup transition hidden" style="width: 300px !important;">
     <ol class="js-toc"></ol>
 </div>
+
+<!--点击工具栏的微信阅读图标弹出地址二维码-->
+<div id="qrcode" class="ui wechat-qr flowing popup transition hidden" style="width:130px !important;">
+<!--    <img src="./static/images/wechat.png" alt="" class="ui rounded image" style="width: 120px">-->
+</div>
+
 <br>
 <br>
 
@@ -739,10 +745,13 @@ h5,h6{font-size:1em;}
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <!--引入semantic-ui js-->
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
 <!--引入语法高亮样式-->
 <script src="./static/lib/prism/prism.js"></script>
 <!--引入生成目录插件tocbot-->
-<script src="static/lib/tocbot/tocbot.min.js"></script>
+<script src="./static/lib/tocbot/tocbot.min.js"></script>
+<!--引入二维码生成插件-->
+<script src="./static/lib/qrcode/qrcode.min.js"></script>
 
 <script>
     $('.menu.toggle').click(function () {
@@ -770,6 +779,22 @@ h5,h6{font-size:1em;}
         on: 'click',
         position: 'left center'
     });
+
+    $('.wechat').popup({
+        popup: $('.wechat-qr'),
+        on: 'hover',
+        position: 'left center'
+    });
+
+    var qrcode = new QRCode("qrcode", {
+        text: "http://jindo.dev.naver.com/collie",
+        width: 110,
+        height: 110,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+    });
+
 </script>
 </body>
 </html>
