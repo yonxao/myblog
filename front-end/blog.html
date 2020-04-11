@@ -19,6 +19,10 @@
 
     <!--引入语法高亮样式-->
     <link rel="stylesheet" href="./static/lib/prism/prism.css">
+
+    <!--引入生成目录插件的样式文件-->
+    <link rel="stylesheet" href="./static/lib/tocbot/tocbot.css">
+
 </head>
 
 <body>
@@ -99,7 +103,7 @@
             <h2 class="ui center aligned header">关于刻意练习的清单</h2>
             <br>
             <!--文章正文-->
-            <div id="content" class="typo typo-selection m-padded-lr-responsive m-padded-tb-large">
+            <div id="content" class="typo typo-selection m-padded-lr-responsive m-padded-tb-large js-toc-content">
 
                 <pre><code class="language-css">p { color: red }</code></pre>
 
@@ -680,8 +684,8 @@ h5,h6{font-size:1em;}
     </div>
 </div>
 <!--二维码-->
-<div class="ui toc-container flowing popup transition hidden">
-    生成的目录
+<div class="ui toc-container flowing popup transition hidden" style="width: 300px !important;">
+    <ol class="js-toc"></ol>
 </div>
 <br>
 <br>
@@ -737,6 +741,8 @@ h5,h6{font-size:1em;}
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <!--引入语法高亮样式-->
 <script src="./static/lib/prism/prism.js"></script>
+<!--引入生成目录插件tocbot-->
+<script src="static/lib/tocbot/tocbot.min.js"></script>
 
 <script>
     $('.menu.toggle').click(function () {
@@ -747,6 +753,17 @@ h5,h6{font-size:1em;}
         popup: $('.payQR.popup'),
         on: 'click',
         position: 'bottom center'
+    });
+
+    tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
     });
     $('.toc.button').popup({
         popup: $('.toc-container.popup'),
