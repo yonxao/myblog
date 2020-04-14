@@ -15,7 +15,7 @@
     <description>blog for xiaosaguo.net</description>
 
     <properties>
-        <java.version>12</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
@@ -62,6 +62,11 @@
             <groupId>org.springframework.restdocs</groupId>
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
