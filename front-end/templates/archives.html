@@ -8,8 +8,8 @@
     <!--引入semantic-ui框架-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
 
-    <link rel="stylesheet" href="./static/css/me.css">
-    <title>关于我</title>
+    <link rel="stylesheet" href="../static/css/me.css">
+    <title>归档</title>
 </head>
 
 <body>
@@ -33,8 +33,8 @@
             <a href="index.html" class="m-item item m-mobile-hide"><i class="mini home icon"></i>首页</a>
             <a href="types.html" class="m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
             <a href="tags.html" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
-            <a href="archives.html" class="m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
-            <a href="about.html" class="active m-item item m-mobile-hide"><i class="mini user icon"></i>关于我</a>
+            <a href="archives.html" class="active m-item item m-mobile-hide"><i class="mini clone icon"></i>归档</a>
+            <a href="about.html" class="m-item item m-mobile-hide"><i class="mini user icon"></i>关于我</a>
             <div class="right m-item item m-mobile-hide">
                 <!--transparent:透明效果-->
                 <div class="ui icon inverted transparent input">
@@ -54,55 +54,73 @@
 </nav>
 
 <!--中间内容-->
-<div class="m-padded-tb-big m-container">
+<div class="m-padded-tb-big m-container-small">
     <div class="ui container">
-        <div class="ui stackable grid">
-            <div class="eleven wide column">
-                <div class="ui segment">
-                    <img src="https://picsum.photos/id/1027/800/600" alt="" class="ui rounded image">
+        <!--头部说明-->
+        <div class="ui top attached padded segment">
+            <!--middle aligned:垂直居中-->
+            <div class="ui middle aligned two column grid">
+                <div class="column">
+                    <h3 class="ui header teal">归档</h3>
                 </div>
-            </div>
-            <div class="five wide column">
-                <div class="ui top attached segment">
-                    <div class="ui header">关于我</div>
-                </div>
-                <!--自我简介-->
-                <div class="ui attached segment">
-                    <p class="m-text">郭永潇，一个独立开发者，折腾在 0 和 1 世界的大叔；一个终生学习者，誓将学习无限循环。
-                        希望结识可以共同成长的小伙伴。</p>
-                    <p class="m-text">热爱编程，喜欢折腾，正在探索高效学习编程技术的方法。。。</p>
-                </div>
-                <!--爱好标签-->
-                <div class="ui attached segment">
-                    <div class="ui orange basic left pointing label">编程</div>
-                    <div class="ui orange basic left pointing label">写作</div>
-                    <div class="ui orange basic left pointing label">思考</div>
-                    <div class="ui orange basic left pointing label">运动</div>
-                </div>
-                <!--技能标签-->
-                <div class="ui attached segment">
-                    <div class="ui teal basic left pointing label m-margin-tb-tiny">Java</div>
-                    <div class="ui teal basic left pointing label m-margin-tb-tiny">JavaScript</div>
-                    <div class="ui teal basic left pointing label m-margin-tb-tiny">PostgreSQL</div>
-                    <div class="ui teal basic left pointing label m-margin-tb-tiny">Redis</div>
-                    <div class="ui teal basic left pointing label m-margin-tb-tiny">Git</div>
-                    <div class="ui teal basic left pointing label m-margin-tb-tiny">整理</div>
-                    <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
-                </div>
-                <!--底部联系方式-->
-                <div class="ui bottom attached segment">
-                    <a href="#" class="ui circular icon button"><i class="github icon"></i></a>
-                    <a href="#" class="ui wechat circular icon button"><i class="wechat icon"></i></a>
-                    <a href="#" class="ui qq circular icon button" data-content="805372666"
-                       data-position="bottom center"><i class="qq icon"></i></a>
-                </div>
-
-                <!--微信图标：弹出二维码-->
-                <div class="ui wechat-qr flowing popup transition hidden">
-                    <img src="./static/images/wechat.png" alt="" class="ui rounded image" style="width: 120px">
+                <div class="right aligned column">
+                    共 <h3 class="ui orange header m-inline-block m-text-thin">124</h3> 篇博客
                 </div>
             </div>
         </div>
+
+        <h3 class="ui center aligned header">2019</h3>
+
+        <div class="ui fluid vertical menu">
+            <a href="#" target="_blank" class="item">
+                <span>
+                <i class="mini teal circle icon"></i>关于刻意联系的清单
+                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                </span>
+                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
+            </a>
+            <a href="#" target="_blank" class="item">
+                <span>
+                <i class="mini teal circle icon"></i>关于刻意联系的清单
+                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                </span>
+                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
+            </a>
+            <a href="#" target="_blank" class="item">
+                <span>
+                <i class="mini teal circle icon"></i>关于刻意联系的清单
+                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                </span>
+                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
+            </a>
+        </div>
+
+        <h3 class="ui center aligned header">2018</h3>
+
+        <div class="ui fluid vertical menu">
+            <a href="#" target="_blank" class="item">
+                <span>
+                <i class="mini teal circle icon"></i>关于刻意联系的清单
+                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                </span>
+                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
+            </a>
+            <a href="#" target="_blank" class="item">
+                <span>
+                <i class="mini teal circle icon"></i>关于刻意联系的清单
+                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                </span>
+                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
+            </a>
+            <a href="#" target="_blank" class="item">
+                <span>
+                <i class="mini teal circle icon"></i>关于刻意联系的清单
+                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                </span>
+                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
+            </a>
+        </div>
+
     </div>
 </div>
 
@@ -119,7 +137,7 @@
             <div class="three wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img src="./static/images/wechat.png" class="ui rounded image" alt="微信二维码"
+                        <img src="../static/images/wechat.png" class="ui rounded image" alt="微信二维码"
                              style="width:110px">
                     </div>
                 </div>
@@ -164,13 +182,6 @@
         /*toggleClass，开关事件，开关样式*/
         $('.m-item').toggleClass('m-mobile-hide');
     });
-    $(".qq").popup();
-    $('.wechat').popup({
-        popup: $('.wechat-qr'),
-        on: 'hover',
-        position: 'bottom center'
-    });
-
 </script>
 </body>
 </html>
