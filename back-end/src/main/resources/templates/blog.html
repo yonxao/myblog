@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <!--设置移动端访问缩放效果-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -32,7 +32,7 @@
 <!--inverted:反转颜色-->
 <!--attached:附加，连接，将两个片段连到一起，圆角-->
 <!--segment:片段（UI组件）-->
-<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+<nav th:replace="_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <!--container:容器，包裹的元素会有响应式展现效果-->
     <div class="ui container">
         <!--menu:菜单（UI组件）-->
@@ -698,7 +698,7 @@ h5,h6{font-size:1em;}
 
 <!--底部footer-->
 <!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
-<footer class="ui inverted vertical segment m-padded-tb-massive">
+<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
     <div class="ui center aligned container">
         <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
         <!--divided:显示分割线-->
@@ -741,6 +741,7 @@ h5,h6{font-size:1em;}
     </div>
 </footer>
 
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <!--引入jquery-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <!--引入semantic-ui js-->
@@ -755,6 +756,7 @@ h5,h6{font-size:1em;}
 <script src="../static/lib/qrcode/qrcode.min.js"></script>
 <!--引入滚动侦测插件-->
 <script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>
+<!--/*/</th:block>/*/-->
 
 <script>
     $('.menu.toggle').click(function () {
