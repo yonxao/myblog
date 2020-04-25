@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <!--设置移动端访问缩放效果-->
@@ -7,22 +7,17 @@
 
     <!--引入semantic-ui框架-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-
-    <link rel="stylesheet" href="../static/css/me.css">
-    <title>博客详情</title>
-
     <!--引入typo.css，markdown的样式-->
     <link rel="stylesheet" href="../static/css/typo.css">
-
     <!--引入动画css-->
     <link rel="stylesheet" href="../static/css/animate.css">
-
     <!--引入语法高亮样式-->
     <link rel="stylesheet" href="../static/lib/prism/prism.css">
-
     <!--引入生成目录插件的样式文件-->
     <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../static/css/me.css">
 
+    <title>博客详情</title>
 </head>
 
 <body>
@@ -218,10 +213,8 @@
                 <p>目前已有像百姓网等全面使用 <i class="serif">Typo.css</i> 的项目，测试平台的覆盖，特别是在<abbr title="手机、平板电脑等移动平台">移动端</abbr>上还没有覆盖完主流平台，希望有能力的同学能加入测试行列，或者加入到
                     <i class="serif">Typo.css</i>
                     的开发。加入方法：<a href="https://github.com/sofish/Typo.css">参与 <i class="serif">Typo.css</i> 开发</a>。如有批评、建议和意见，也随时欢迎给在
-                    Github 直接提 <a
-                            href="https://github.com/sofish/Typo.css/issues">issues</a>，或给<abbr
-                            title="Sofish Lin, author of Typo.css"
-                            role="author">我</abbr>发<a
+                    Github 直接提 <a href="https://github.com/sofish/Typo.css/issues">issues</a>，\
+                    或给<abbr title="Sofish Lin, author of Typo.css" role="author">我</abbr>发<a
                             href="mailto:sofish@icloud.com">邮件</a>。</p>
 
 
@@ -552,12 +545,12 @@ h5,h6{font-size:1em;}
         <div class="ui attached positive message">
             <div class="ui middle aligned grid">
                 <div class="eleven wide column">
-                    <ui class="list">
+                    <ul class="list">
                         <li>作者：潇洒郭（联系作者）</li>
                         <li>发表时间：2019-08-19 21:50</li>
                         <li>版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</li>
                         <li>公众号转载：请在文末添加作者公众号二维码</li>
-                    </ui>
+                    </ul>
                 </div>
                 <div class="five wide column">
                     <img src="../static/images/wechat.png" alt="" class="ui right floated image rounded bordered"
