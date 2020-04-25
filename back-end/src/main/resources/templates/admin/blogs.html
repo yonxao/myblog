@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <!--设置移动端访问缩放效果-->
@@ -7,8 +8,8 @@
 
     <!--引入semantic-ui框架-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-
     <link rel="stylesheet" href="../../static/css/me.css">
+
     <title>博客管理</title>
 </head>
 
@@ -31,7 +32,7 @@
             <h2 class="ui teal header item">管理后台</h2>
             <!--i标签:显示斜体文本效果。-->
             <a href="blogs.html" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
-            <a href="#" class="m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
+            <a href="types.html" class="m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
             <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
 
             <div class="right menu m-item m-mobile-hide">
@@ -51,12 +52,13 @@
         <i class="sidebar icon"></i>
     </a>
 </nav>
+
 <!--二级导航-->
 <div class="ui attached pointing menu">
     <div class="ui container">
         <div class="right menu">
-            <a href="#" class="item">发布</a>
-            <a href="#" class="teal active item">列表</a>
+            <a href="blog-input.html" class="item">发布</a>
+            <a href="blogs.html" class="teal active item">列表</a>
         </div>
     </div>
 </div>

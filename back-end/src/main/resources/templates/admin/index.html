@@ -15,10 +15,6 @@
 <body>
 
 <!--导航-->
-<!--ui:表示使用semantic提供的UI组件-->
-<!--inverted:反转颜色-->
-<!--attached:附加，连接，将两个片段连到一起，圆角-->
-<!--segment:片段（UI组件）-->
 <nav th:replace="admin/_fragments :: menu(0)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <!--container:容器，包裹的元素会有响应式展现效果-->
     <div class="ui container">
@@ -30,8 +26,8 @@
             <!--item:项（UI组件）-->
             <h2 class="ui teal header item">管理后台</h2>
             <!--i标签:显示斜体文本效果。-->
-            <a href="blogs.html" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
-            <a href="#" class="m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
+            <a href="blogs.html" class="m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
+            <a href="types.html" class="m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
             <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
 
             <div class="right menu m-item m-mobile-hide">
