@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class LogAspect {
 
-    @Pointcut("execution(* net.xiaosaguo.blog.web.*.*(..))")
+    @Pointcut("execution(* net.xiaosaguo.blog.web..*(..))")
     public void log() {
     }
 
