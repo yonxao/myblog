@@ -5,6 +5,8 @@ import net.xiaosaguo.blog.po.User;
 import net.xiaosaguo.blog.util.MD5Utils;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * description: 用户相关的接口的实现类
  *
@@ -14,12 +16,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-
-    private final UserRepository userRepository;
-
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    @Resource
+    private UserRepository userRepository;
 
     @Override
     public User checkUser(String username, String password) {
