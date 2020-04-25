@@ -8,8 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author roveyx
- * @date 2020-4-24 17:24:35
+ * description: 用户Entity
+ *
+ * @author xiaosaguo
+ * @version 1 xiaosaguo 创建
  */
 @Data
 @Entity

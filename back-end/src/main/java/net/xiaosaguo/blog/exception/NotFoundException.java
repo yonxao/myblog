@@ -1,10 +1,13 @@
-package net.xiaosaguo.blog;
+package net.xiaosaguo.blog.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * @author roveyx
+ * description: 自定义404异常
+ *
+ * @author xiaosaguo
+ * @version 1 xiaosaguo 创建
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {

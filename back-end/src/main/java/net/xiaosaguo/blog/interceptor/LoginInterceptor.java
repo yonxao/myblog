@@ -13,10 +13,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
+    public static final String USER_ATTRIBUTE_NAME_IN_SESSION = "user";
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        if (request.getSession().getAttribute("user") == null) {
+        if (request.getSession().getAttribute(USER_ATTRIBUTE_NAME_IN_SESSION) == null) {
             response.sendRedirect("/admin");
             return false;
         }

@@ -12,8 +12,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author roveyx
- * @date 2020-4-14 11:44:01
+ * description: 使用aop记录请求日志
+ *
+ * @author xiaosaguo
+ * @version 1 xiaosaguo 创建
  */
 @Aspect
 @Component

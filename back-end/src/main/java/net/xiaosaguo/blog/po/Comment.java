@@ -8,8 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author roveyx
- * @date 2020-4-24 17:24:35
+ * description: 评论Entity
+ *
+ * @author xiaosaguo
+ * @version 1 xiaosaguo 创建
  */
 @Data
 @Entity
@@ -21,7 +23,7 @@ public class Comment {
     private Long id;
     private String nickName;
     private String email;
-    private String comtent;
+    private String content;
     private String avatar;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;

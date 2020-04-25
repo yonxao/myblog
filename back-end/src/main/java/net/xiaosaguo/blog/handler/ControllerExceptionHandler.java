@@ -10,7 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author roveyx
+ * description: 自定义全局异常处理器
+ *
+ * @author xiaosaguo
+ * @version 1 xiaosaguo 创建
  */
 @ControllerAdvice
 @Slf4j

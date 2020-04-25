@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author roveyx
- * @date 2020-4-24 17:32:51
+ * description: 标签Entity
+ *
+ * @author xiaosaguo
+ * @version 1 xiaosaguo 创建
  */
 @Data
 @Entity

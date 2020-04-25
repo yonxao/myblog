@@ -4,7 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * @author roveyx
+ * description: 首页控制器
+ *
+ * @author xiaosaguo
+ * @version 1 xiaosaguo 创建
  */
 @Controller
 public class IndexController {
