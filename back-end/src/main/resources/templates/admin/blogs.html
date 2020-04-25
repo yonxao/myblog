@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <!--设置移动端访问缩放效果-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -19,7 +19,7 @@
 <!--inverted:反转颜色-->
 <!--attached:附加，连接，将两个片段连到一起，圆角-->
 <!--segment:片段（UI组件）-->
-<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+<nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <!--container:容器，包裹的元素会有响应式展现效果-->
     <div class="ui container">
         <!--menu:菜单（UI组件）-->
@@ -53,12 +53,12 @@
 </nav>
 <!--二级导航-->
 <div class="ui attached pointing menu">
-    <ui class="ui container">
+    <div class="ui container">
         <div class="right menu">
             <a href="#" class="item">发布</a>
             <a href="#" class="teal active item">列表</a>
         </div>
-    </ui>
+    </div>
 </div>
 
 <!--中间内容-->
@@ -124,14 +124,15 @@
             </tbody>
 
             <tfoot>
-            <th colspan="6">
-                <div class="ui mini pagination menu">
-                    <a class="item">上一页</a>
-                    <a class="item">下一页</a>
-                </div>
-
-                <a href="" class="ui mini right floated teal basic button">新增</a>
-            </th>
+            <tr>
+                <th colspan="6">
+                    <div class="ui mini pagination menu">
+                        <a class="item">上一页</a>
+                        <a class="item">下一页</a>
+                    </div>
+                    <a href="" class="ui mini right floated teal basic button">新增</a>
+                </th>
+            </tr>
             </tfoot>
         </table>
 
@@ -143,7 +144,7 @@
 
 <!--底部footer-->
 <!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
-<footer class="ui inverted vertical segment m-padded-tb-massive">
+<footer th:replace="admin/_fragments ::　footer" class="ui inverted vertical segment m-padded-tb-massive">
     <div class="ui center aligned container">
         <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
         <!--divided:显示分割线-->
@@ -176,20 +177,22 @@
             <div class="five wide column">
                 <h4 class="ui header inverted m-text-spaced m-opacity-mini">博客</h4>
                 <p class="m-text-thin m-text-spaced m-opacity-mini">
-                    这个派可数据的分享博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
+                    这个我的博客的分享博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
             </div>
         </div>
         <!--divider:分割线-->
         <!--section:分割-->
         <div class="ui section divider"></div>
-        <p class="m-text-thin m-text-spaced m-opacity-tiny">版权所有：北京派可数据科技有限公司©2017 京ICP备18044661号-2</p>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">版权所有：xiaosaguo.net</p>
     </div>
 </footer>
 
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
 <!--引入jquery-->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <!--引入semantic-ui js-->
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
 
 <script>
     $('.menu.toggle').click(function () {
