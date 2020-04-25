@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <!--设置移动端访问缩放效果-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!--引入semantic-ui框架-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+
+    <link rel="stylesheet" href="../../static/css/me.css">
+    <title>后台管理</title>
+</head>
+
+<body>
+
+<!--导航-->
+<!--ui:表示使用semantic提供的UI组件-->
+<!--inverted:反转颜色-->
+<!--attached:附加，连接，将两个片段连到一起，圆角-->
+<!--segment:片段（UI组件）-->
+<nav th:replace="admin/_fragments :: menu(0)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+    <!--container:容器，包裹的元素会有响应式展现效果-->
+    <div class="ui container">
+        <!--menu:菜单（UI组件）-->
+        <!--secondary:一种UI样式-->
+        <!--stackable:适应手机端响应样式，可堆叠的-->
+        <div class="ui inverted secondary stackable menu">
+            <!--header:头样式-->
+            <!--item:项（UI组件）-->
+            <h2 class="ui teal header item">管理后台</h2>
+            <!--i标签:显示斜体文本效果。-->
+            <a href="blogs.html" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+
+            <div class="right menu m-item m-mobile-hide">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="https://picsum.photos/id/1027/100/100" alt="" class="ui avatar image">郭永潇
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+
+
+<!--中间内容-->
+<div class="m-padded-tb-big m-container-small">
+    <div class="ui container">
+        <div class="ui success large message">
+            <h3>Hi,</h3>
+            <p>潇洒郭，欢迎登录！</p>
+
+        </div>
+        <img src="https://picsum.photos/id/1027/1000/400" alt="" class="ui rounded bordered fluid image">
+    </div>
+</div>
+
+<br>
+<br>
+
+<!--底部footer-->
+<!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
+<footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+    <div class="ui center aligned container">
+        <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
+        <!--divided:显示分割线-->
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <img src="../../static/images/wechat.png" class="ui rounded image" alt="微信二维码"
+                             style="width:110px">
+                    </div>
+                </div>
+            </div>
+            <div class="three wide column">
+                <h4 class="ui header inverted m-text-spaced m-opacity-mini">最新博客</h4>
+                <!--list:列表（UI组件）-->
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事（user story）</a>
+                    <a href="#" class="item">刻意联系</a>
+                    <a href="#" class="item">semantic-ui快速入门</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui header inverted m-text-spaced m-opacity-mini">联系我</h4>
+                <!--list:列表（UI组件）-->
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email：yongxiao.guo@packingdata.com</a>
+                    <a href="#" class="item">QQ：805372666</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui header inverted m-text-spaced m-opacity-mini">博客</h4>
+                <p class="m-text-thin m-text-spaced m-opacity-mini">
+                    这个我的博客的分享博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
+            </div>
+        </div>
+        <!--divider:分割线-->
+        <!--section:分割-->
+        <div class="ui section divider"></div>
+        <p class="m-text-thin m-text-spaced m-opacity-tiny">版权所有：xiaosaguo.net</p>
+    </div>
+</footer>
+
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+<!--引入jquery-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<!--引入semantic-ui js-->
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('.menu.toggle').click(function () {
+        /*toggleClass，开关事件，开关样式*/
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
+</script>
+</body>
+</html>
