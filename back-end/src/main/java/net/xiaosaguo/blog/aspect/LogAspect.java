@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author xiaosaguo
  * @version 1 xiaosaguo 创建
+ * @version 2 xiaosaguo 在日志对象中增加请求方式
  */
 @Aspect
 @Component
@@ -31,11 +32,12 @@ public class LogAspect {
         log.info("--------------before--------------");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+        String method = request.getMethod();
         String url = request.getRequestURL().toString();
         String ip = request.getRemoteAddr();
         String classMethod = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
         Object[] args = joinPoint.getArgs();
-        RequestLog requestLog = new RequestLog(url, ip, classMethod, args);
+        RequestLog requestLog = new RequestLog(method, url, ip, classMethod, args);
         log.info("Request : {}", requestLog);
     }
 
@@ -52,6 +54,7 @@ public class LogAspect {
     @AllArgsConstructor
     @ToString
     private class RequestLog {
+        private String method;
         private String url;
         private String ip;
         private String classMethod;
