@@ -37,11 +37,11 @@
             <!--item:项（UI组件）-->
             <h2 class="ui teal header item">管理后台</h2>
             <!--i标签:显示斜体文本效果。-->
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
+            <a href="#" th:href="@{/admin/blogs}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
                 <i class="mini home icon"></i>博客</a>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
+            <a href="#" th:href="@{/admin/type}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
                 <i class="mini th icon"></i>分类</a>
-            <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
+            <a href="#" th:href="@{/admin/tags}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
                 <i class="mini tags icon"></i>标签</a>
 
             <div class="right menu m-item m-mobile-hide">
