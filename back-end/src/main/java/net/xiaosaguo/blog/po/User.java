@@ -1,6 +1,8 @@
 package net.xiaosaguo.blog.po;
 
 import lombok.Data;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,15 +23,17 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
-    private String nickName;
     private String username;
     private String password;
     private String email;
+    private String nickname;
     private String avatar;
     private Integer type;
     @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
     private Date updateTime;
 
     @OneToMany(mappedBy = "user")

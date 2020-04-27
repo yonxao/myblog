@@ -21,7 +21,7 @@ public class Comment {
     @Id
     @GeneratedValue
     private Long id;
-    private String nickName;
+    private String nickname;
     private String email;
     private String content;
     private String avatar;
