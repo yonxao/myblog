@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
  * description: 分类的相关接口
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
  */
 public interface TypeService {
 
@@ -19,9 +18,8 @@ public interface TypeService {
      * @return net.xiaosaguo.blog.po.Type 返回保存成功后的对象
      * @author xiaosaguo
      * @date 2020-04-26 05:11
-     * @version 1 xiaosaguo 创建
      */
-    Type saveType(Type type);
+    Type save(Type type);
 
     /**
      * description: 根据id查询
@@ -30,9 +28,8 @@ public interface TypeService {
      * @return net.xiaosaguo.blog.po.Type 返回根据id查询到的分类
      * @author xiaosaguo
      * @date 2020-04-26 05:13
-     * @version 1 xiaosaguo 创建
      */
-    Type getType(Long id);
+    Type get(Long id);
 
     /**
      * description: 分页查询满足条件的分类
@@ -41,9 +38,8 @@ public interface TypeService {
      * @return org.springframework.data.domain.Page<net.xiaosaguo.blog.po.Type>
      * @author xiaosaguo
      * @date 2020-04-26 05:14
-     * @version 1 xiaosaguo 创建
      */
-    Page<Type> listType(Pageable pageable);
+    Page<Type> list(Pageable pageable);
 
     /**
      * description: 根据id修改分类
@@ -53,9 +49,8 @@ public interface TypeService {
      * @return net.xiaosaguo.blog.po.Type
      * @author xiaosaguo
      * @date 2020-04-26 05:17
-     * @version 1 xiaosaguo 创建
      */
-    Type updateType(Long id, Type type);
+    Type update(Long id, Type type);
 
     /**
      * description: 根据id删除分类
@@ -63,9 +58,8 @@ public interface TypeService {
      * @param id 分类的id
      * @author xiaosaguo
      * @date 2020-04-26 05:18
-     * @version 1 xiaosaguo 创建
      */
-    void deleteType(Long id);
+    void delete(Long id);
 
     /**
      * description: 根据分类名称查找分类
@@ -74,7 +68,6 @@ public interface TypeService {
      * @return net.xiaosaguo.blog.po.Type
      * @author xiaosaguo
      * @date 2020-04-26 08:31
-     * @version 1 xiaosaguo 创建
      */
     Type getByName(String name);
 }

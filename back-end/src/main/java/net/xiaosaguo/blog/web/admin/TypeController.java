@@ -28,8 +28,8 @@ public class TypeController {
     private TypeService typeService;
 
     @GetMapping
-    public String list(@PageableDefault(size = 3, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Model model) {
-        model.addAttribute("page", typeService.listType(pageable));
+    public String list(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Model model) {
+        model.addAttribute("page", typeService.list(pageable));
         return "admin/type";
     }
 
@@ -52,7 +52,7 @@ public class TypeController {
             return "admin/type-input";
         }
 
-        Type t = typeService.saveType(type);
+        Type t = typeService.save(type);
         if (t == null) {
             // 没保存成功
             attributes.addFlashAttribute("message", "新增失败");
@@ -66,7 +66,7 @@ public class TypeController {
 
     @GetMapping("/update/{id}")
     public String updateView(@PathVariable Long id, Model model) {
-        model.addAttribute("type", typeService.getType(id));
+        model.addAttribute("type", typeService.get(id));
         return "admin/type-input";
     }
 
@@ -79,13 +79,14 @@ public class TypeController {
             return "admin/type-input";
         }
 
+        // 名称重复校验
         Type byName = typeService.getByName(type.getName());
         if (byName != null) {
             bingingResult.rejectValue("name", "nameError", "该分类名称已存在");
             return "admin/type-input";
         }
 
-        Type t = typeService.updateType(id, type);
+        Type t = typeService.update(id, type);
         if (t == null) {
             // 没保存成功
             attributes.addFlashAttribute("message", "更新失败");
@@ -100,7 +101,7 @@ public class TypeController {
     @GetMapping("/delete/{id}")
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
-        typeService.deleteType(id);
+        typeService.delete(id);
         attributes.addFlashAttribute("message", "删除成功");
         return "redirect:/admin/type";
     }

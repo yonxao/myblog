@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
  * description: 分类Repository
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
  */
 @Repository
 public interface TypeRepository extends JpaRepository<Type, Long> {
@@ -20,7 +19,6 @@ public interface TypeRepository extends JpaRepository<Type, Long> {
      * @return net.xiaosaguo.blog.po.Type
      * @author xiaosaguo
      * @date 2020-04-26 08:33
-     * @version 1 xiaosaguo 创建
      */
     Type findByName(String name);
 }

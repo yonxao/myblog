@@ -26,34 +26,32 @@ public class TypeServiceImpl implements TypeService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Type saveType(Type type) {
+    public Type save(Type type) {
         return typeRepository.save(type);
     }
 
     @Override
-    public Type getType(Long id) {
-        return typeRepository.getOne(id);
+    public Type get(Long id) {
+        return typeRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Page<Type> listType(Pageable pageable) {
+    public Page<Type> list(Pageable pageable) {
         return typeRepository.findAll(pageable);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Type updateType(Long id, Type type) {
-        Type t = typeRepository.getOne(id);
-        if (t == null) {
-            throw new NotFoundException("不存在该分类");
-        }
+    public Type update(Long id, Type type) {
+        Type t = typeRepository.findById(id).orElseThrow(() -> new NotFoundException("该记录不存在, id = :" + id));
+        type.setId(null);
         BeanUtils.copyProperties(type, t);
         return typeRepository.save(t);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void deleteType(Long id) {
+    public void delete(Long id) {
         typeRepository.deleteById(id);
     }
 
