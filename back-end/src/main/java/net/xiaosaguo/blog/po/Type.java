@@ -22,6 +22,7 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "分类名称不能为空")
+    @Column(unique=true, nullable=false)
     private String name;
 
     @OneToMany(mappedBy = "type")
