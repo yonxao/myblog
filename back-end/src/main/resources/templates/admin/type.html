@@ -27,9 +27,9 @@
             <!--item:项（UI组件）-->
             <h2 class="ui teal header item">管理后台</h2>
             <!--i标签:显示斜体文本效果。-->
-            <a href="blogs.html" class="m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
-            <a href="type.html" class="active m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
-            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+            <a href="blog.html" class="m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+            <a href="type.html" class="active m-item item m-mobile-hide"><i class="th icon"></i>分类</a>
+            <a href="tag.html" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
 
             <div class="right menu m-item m-mobile-hide">
                 <div class="ui dropdown item">
@@ -53,7 +53,7 @@
 <div class="ui attached pointing menu">
     <div class="ui container">
         <div class="right menu">
-            <a th:href="@{/admin/type/save}" href="type-input.html" class="item">发布</a>
+            <a th:href="@{/admin/type/save}" href="type-input.html" class="item">编辑</a>
             <a th:href="@{/admin/type}" href="type.html" class="teal active item">列表</a>
         </div>
     </div>
@@ -85,9 +85,9 @@
                 <td th:text="${type.name}">学习笔记</td>
                 <td>
                     <a href="#" th:href="@{/admin/type/update/{id}(id=${type.id})}"
-                       class="ui mini teal basic button">编辑</a>
+                       class="ui mini teal basic button">修改</a>
                     <a href="#" th:href="@{/admin/type/delete/{id}(id=${type.id})}"
-                       class="ui mini red basic delAasBtn button">删除</a>
+                       class="ui mini red basic button">删除</a>
                 </td>
             </tr>
             </tbody>
