@@ -44,8 +44,13 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Type update(Long id, Type type) {
         Type t = typeRepository.findById(id).orElseThrow(() -> new NotFoundException("该记录不存在, id = :" + id));
-        type.setId(null);
         BeanUtils.copyProperties(type, t);
+        t.setId(id);
+        /*
+         * TODO: 一个比较有意思的点
+         * 这里的t如果id为null，就好报异常，而直接调用新增则没问题，
+         * 猜想：和请求方式有关，put请求不允许新增资源，只能修改资源
+         */
         return typeRepository.save(t);
     }
 

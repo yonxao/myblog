@@ -1,7 +1,6 @@
 package net.xiaosaguo.blog.web.admin;
 
 import net.xiaosaguo.blog.po.Tag;
-import net.xiaosaguo.blog.po.Type;
 import net.xiaosaguo.blog.service.TagService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -36,7 +35,7 @@ public class TagController {
 
     @GetMapping("/save")
     public String saveView(Model model) {
-        model.addAttribute("type", new Type());
+        model.addAttribute("tag", new Tag());
         return "admin/tag-input";
     }
 

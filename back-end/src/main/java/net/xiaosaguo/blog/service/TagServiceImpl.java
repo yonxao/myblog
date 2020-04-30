@@ -44,9 +44,9 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tag update(Long id, Tag tag) {
         Tag t = repository.findById(id).orElseThrow(() -> new NotFoundException("不存在该记录：id = " + id));
-        tag.setId(null);
         BeanUtils.copyProperties(tag, t);
-        return repository.save(tag);
+        t.setId(id);
+        return repository.save(t);
     }
 
     @Transactional(rollbackFor = Exception.class)
