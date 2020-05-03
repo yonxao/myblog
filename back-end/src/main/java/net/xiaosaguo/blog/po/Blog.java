@@ -1,6 +1,8 @@
 package net.xiaosaguo.blog.po;
 
 import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.List;
  * description: 博客Entity
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/5/1
  */
 @Data
 @Entity
@@ -32,8 +34,10 @@ public class Blog {
     private boolean published;
     private boolean recommend;
     @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date updateTime;
 
     @ManyToOne
