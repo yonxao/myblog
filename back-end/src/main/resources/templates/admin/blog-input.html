@@ -32,9 +32,9 @@
             <!--item:项（UI组件）-->
             <h2 class="ui teal header item">管理后台</h2>
             <!--i标签:显示斜体文本效果。-->
-            <a href="blogs.html" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
-            <a href="type.html" class="m-item item m-mobile-hide"><i class="mini th icon"></i>分类</a>
-            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+            <a href="blog.html" class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+            <a href="type.html" class="m-item item m-mobile-hide"><i class="th icon"></i>分类</a>
+            <a href="tag.html" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
 
             <div class="right menu m-item m-mobile-hide">
                 <div class="ui dropdown item">
@@ -57,8 +57,8 @@
 <div class="ui attached pointing menu">
     <div class="ui container">
         <div class="right menu">
-            <a href="blog-input.html" class="teal active item">发布</a>
-            <a href="blogs.html" class="item">列表</a>
+            <a href="blog-input.html" class="teal active item">编辑</a>
+            <a href="blog.html" class="item">列表</a>
         </div>
     </div>
 </div>
@@ -82,13 +82,15 @@
                             <div class="item" data-value="翻译">翻译</div>
                         </div>
                     </div>
-                    <input type="text" name="title" placeholder="标题">
+                    <input id="title" type="text" name="title" placeholder="标题">
+                    <label for="title"></label>
                 </div>
             </div>
 
             <div class="field">
                 <div id="md-content" style="z-index: 1!important;">
-                    <textarea placeholder="博客内容" name="context" style="display: none">
+                    <label for="content"></label>
+                    <textarea id="content" placeholder="博客内容" name="content" style="display: none">
 [TOC]
 
 #### Disabled options
@@ -160,8 +162,8 @@
 
             <div class="field">
                 <div class="ui left labeled input">
-                    <label class="ui teal basic label">封面</label>
-                    <input type="text" name="indexPicture" placeholder="首图引用地址">
+                    <label for="indexPicture" class="ui teal basic label">封面</label>
+                    <input id="indexPicture" type="text" name="indexPicture" placeholder="首图引用地址">
                 </div>
             </div>
 
