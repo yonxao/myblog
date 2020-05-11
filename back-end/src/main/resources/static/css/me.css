@@ -196,3 +196,8 @@ body {
     bottom: 0 !important;
     right: 0 !important;
 }
+
+i.m-mini.icon, i.m-mini.icons {
+    line-height: 1; /*文本12px*/
+    font-size: .7rem;
+}

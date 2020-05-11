@@ -38,16 +38,18 @@
             <h2 class="ui teal header item">管理后台</h2>
             <!--i标签:显示斜体文本效果。-->
             <a href="#" th:href="@{/admin/blog}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
-                <i class="home icon"></i>博客</a>
+                <i class="m-mini gem icon"></i>博客</a>
             <a href="#" th:href="@{/admin/type}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
-                <i class="th icon"></i>分类</a>
+                <i class="m-mini folder open icon"></i>分类</a>
             <a href="#" th:href="@{/admin/tag}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
-                <i class="tags icon"></i>标签</a>
+                <i class="m-mini tag icon"></i>标签</a>
 
             <div class="right menu m-item m-mobile-hide">
                 <div class="ui dropdown item">
                     <div class="text">
-                        <img src="https://picsum.photos/id/1024/100/100" alt="" class="ui avatar image">郭永潇
+                        <img src="https://picsum.photos/id/1024/100/100" th:src="@{${session.user.avatar}}"
+                             alt="avatar" class="ui avatar image">
+                        <span th:text="${session.user.nickname}">潇哥哥</span>
                     </div>
                     <i class="dropdown icon"></i>
                     <div class="menu">
