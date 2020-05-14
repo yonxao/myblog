@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <!--设置移动端访问缩放效果-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title th:replace="${title}">我的博客</title>
+
+    <!--引入editor.md的css-->
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css"
+          th:href="@{/lib/editormd/css/editormd.min.css}">
+    <!--引入typo.css，markdown的样式-->
+    <link rel="stylesheet" href="../../static/css/typo.css" th:href="@{/css/typo.css}">
+    <!--引入动画css-->
+    <link rel="stylesheet" href="../../static/css/animate.css" th:href="@{/css/animate.css}">
+    <!--引入语法高亮样式-->
+    <link rel="stylesheet" href="../../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <!--引入生成目录插件的样式文件-->
+    <link rel="stylesheet" href="../../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <!--引入semantic-ui框架-->
+    <link rel="stylesheet" href="../../static/css/semantic.min.css" th:href="@{/css/semantic.min.css}">
+
+    <!--自定义css-->
+    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+
+
+<body>
+
+<th:block th:fragment="script">
+    <!--引入jquery-->
+    <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+    <!--引入semantic-ui js-->
+    <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
+    <!--引入平滑滚动插件-->
+    <script src="../../static/js/jquery.scrollTo.min.js" th:src="@{/js/jquery.scrollTo.min.js}"></script>
+    <!--引入语法高亮样式-->
+    <script src="../../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+    <!--引入生成目录插件tocbot-->
+    <script src="../../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <!--引入二维码生成插件-->
+    <script src="../../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <!--引入滚动侦测插件-->
+    <script src="../../static/lib/waypoints/jquery.waypoints.min.js"
+            th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+    <!--引入editormd js-->
+    <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+
+    <!--由于函数中使用了静态资源地址，动态也静态时不能相互共存，故放在这里转换-->
+    <script>
+        // 初始化editor.md编辑器
+        // let contentEditor;
+        $(function () {
+            /*contentEditor = */
+            editormd("md-content", {
+                width: "100%",
+                height: 640,
+                syncScrolling: "single",
+                // path: "../../static/lib/editormd/lib/"
+                // 使用thymeleaf的引入方法
+                path: "/lib/editormd/lib/"
+            });
+        });
+    </script>
+</th:block>
+
+</body>
+</html>
