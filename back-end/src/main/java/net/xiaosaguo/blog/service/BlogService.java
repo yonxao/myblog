@@ -1,6 +1,7 @@
 package net.xiaosaguo.blog.service;
 
 import net.xiaosaguo.blog.po.Blog;
+import net.xiaosaguo.blog.vo.BlogQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -26,12 +27,13 @@ public interface BlogService {
     /**
      * description: 根据条件分页查询
      *
-     * @param pageable 分页参数
+     * @param pageable  分页参数
+     * @param blogQuery {@code BlogQuery} 的查询条件
      * @return {@code Page<Blog>} 根据条件查询出的包装了分页信息的结果集
      * @author xiaosaguo
      * @date 2020/05/02 10:18
      */
-    Page<Blog> list(Pageable pageable);
+    Page<Blog> list(Pageable pageable, BlogQuery blogQuery);
 
     /**
      * description: 新增 {@code Blog}

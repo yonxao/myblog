@@ -3,13 +3,19 @@ package net.xiaosaguo.blog.service;
 import net.xiaosaguo.blog.dao.BlogRepository;
 import net.xiaosaguo.blog.exception.NotFoundException;
 import net.xiaosaguo.blog.po.Blog;
+import net.xiaosaguo.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -30,14 +36,29 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Page<Blog> list(Pageable pageable) {
-        return blogRepository.findAll(pageable);
+    public Page<Blog> list(Pageable pageable, BlogQuery blogQuery) {
+        return blogRepository.findAll((Specification<Blog>) (root, query, criteriaBuilder) -> {
+            // TODO 学习 lambda 表达式用法，学习匿名内部类，学习数组操作
+            List<Predicate> predicates = new ArrayList<>();
+            if (!StringUtils.isEmpty(blogQuery.getTitle())) {
+                predicates.add(criteriaBuilder.like(root.get("title"), "%" + blogQuery.getTitle() + "%"));
+            }
+            if (!StringUtils.isEmpty(blogQuery.getTypeId())) {
+                predicates.add(criteriaBuilder.equal(root.get("type").get("id"), blogQuery.getTypeId()));
+            }
+            if (blogQuery.isRecommend()) {
+                predicates.add(criteriaBuilder.equal(root.get("recommend"), blogQuery.isRecommend()));
+            }
+            query.where(predicates.toArray(new Predicate[0]));
+            return null;
+        }, pageable);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Blog save(Blog blog) {
         blog.setId(null);
+        blog.setViews(0);
         return blogRepository.save(blog);
     }
 
