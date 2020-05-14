@@ -3,6 +3,7 @@ package net.xiaosaguo.blog.configurer;
 import net.xiaosaguo.blog.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -20,5 +21,10 @@ public class WebConfigurer implements WebMvcConfigurer {
                 .addPathPatterns("/admin/**")
                 // 排除登录页及登录接口
                 .excludePathPatterns("/admin", "/admin/login");
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 }
