@@ -4,6 +4,8 @@ import net.xiaosaguo.blog.po.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * description: 标签的相关接口
  *
@@ -31,6 +33,25 @@ public interface TagService {
      * @date 2020-04-28 05:32
      */
     Page<Tag> list(Pageable pageable);
+
+    /**
+     * description: 查询所有标签
+     *
+     * @return 返回所有的 @{code Tag}
+     * @author xiaosaguo
+     * @date 2020/05/13 02:21
+     */
+    List<Tag> list();
+
+    /**
+     * description: 根据拼接的主键集合查询标签集合
+     *
+     * @param ids 主键集合，eg： 1,2,3
+     * @return 返回根据主键集合查询出的 {@code Tag} 集合
+     * @author xiaosaguo
+     * @date 2020/05/14 06:04
+     */
+    List<Tag> listByIds(String ids);
 
     /**
      * description: 根据主键查询

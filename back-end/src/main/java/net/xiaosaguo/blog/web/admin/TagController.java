@@ -86,6 +86,8 @@ public class TagController {
         return "redirect:/admin/tag";
     }
 
+    @GetMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
         tagService.delete(id);
         attributes.addFlashAttribute("message", "删除成功");

@@ -8,8 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * description: 标签的相关接口实现
@@ -33,6 +36,38 @@ public class TagServiceImpl implements TagService {
     @Override
     public Page<Tag> list(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    @Override
+    public List<Tag> list() {
+        return repository.findAll();
+    }
+
+    @Override
+    public List<Tag> listByIds(String ids) {
+        if (StringUtils.isEmpty(ids)) {
+            return null;
+        }
+        return repository.findAllById(strConvertToLongList(ids));
+    }
+
+    /**
+     * description: 用逗号拼接数字的字符串转换为 {@code List<Long>}
+     *
+     * @param str 用逗号拼接数字的字符串，eg： 1,2,3
+     * @return 类型为 {@code Long} 的主键集合
+     * @author xiaosaguo
+     * @date 2020/05/14 06:22
+     */
+    private List<Long> strConvertToLongList(String str) {
+        List<Long> longList = new ArrayList<>();
+        if (!StringUtils.isEmpty(str)) {
+            String[] strArr = str.split(",");
+            for (String s : strArr) {
+                longList.add(Long.valueOf(s));
+            }
+        }
+        return longList;
     }
 
     @Override
