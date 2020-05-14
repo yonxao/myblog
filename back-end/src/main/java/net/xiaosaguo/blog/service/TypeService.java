@@ -4,6 +4,8 @@ import net.xiaosaguo.blog.po.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * description: 分类的相关接口
  *
@@ -40,6 +42,15 @@ public interface TypeService {
      * @date 2020-04-26 05:14
      */
     Page<Type> list(Pageable pageable);
+
+    /**
+     * description: 查询所有分类
+     *
+     * @return 返回所有 @{code Type}
+     * @author xiaosaguo
+     * @date 2020/05/12 07:26
+     */
+    List<Type> list();
 
     /**
      * description: 根据id修改分类

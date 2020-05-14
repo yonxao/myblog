@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -38,6 +39,11 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public Page<Type> list(Pageable pageable) {
         return typeRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Type> list() {
+        return typeRepository.findAll();
     }
 
     @Transactional(rollbackFor = Exception.class)
