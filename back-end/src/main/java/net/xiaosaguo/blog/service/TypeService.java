@@ -53,6 +53,16 @@ public interface TypeService {
     List<Type> list();
 
     /**
+     * description: 根据分类下的博客数量排名，返回前几名
+     *
+     * @param size 前几个
+     * @return 前 {@code size} 名的 {@code Type}
+     * @author xiaosaguo
+     * @date 2020/05/15 23:14
+     */
+    List<Type> listTop(Integer size);
+
+    /**
      * description: 根据id修改分类
      *
      * @param id   分类的id

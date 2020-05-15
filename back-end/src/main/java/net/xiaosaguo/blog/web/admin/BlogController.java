@@ -69,19 +69,6 @@ public class BlogController {
         return INPUT;
     }
 
-    /**
-     * description: 给页面初始化一些固定信息
-     *
-     * @param model 数据传输载体
-     * @author xiaosaguo
-     * @date 2020/05/14 21:17
-     */
-    private void initTypesAndTags(Model model) {
-        // 初始化分类和标签列表
-        model.addAttribute("typeList", typeService.list());
-        model.addAttribute("tagList", tagService.list());
-    }
-
     @PostMapping
     public String save(@Valid Blog blog, BindingResult bindingResult,
                        HttpSession session,
@@ -125,6 +112,19 @@ public class BlogController {
         blogService.delete(id);
         attributes.addFlashAttribute("message", "删除成功");
         return REDIRECT_LIST;
+    }
+
+    /**
+     * description: 给页面初始化一些固定信息
+     *
+     * @param model 数据传输载体
+     * @author xiaosaguo
+     * @date 2020/05/14 21:17
+     */
+    private void initTypesAndTags(Model model) {
+        // 初始化分类和标签列表
+        model.addAttribute("typeList", typeService.list());
+        model.addAttribute("tagList", tagService.list());
     }
 
 

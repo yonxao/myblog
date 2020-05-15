@@ -7,7 +7,9 @@ import net.xiaosaguo.blog.util.MyBeanUtils;
 import net.xiaosaguo.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +33,16 @@ public class BlogServiceImpl implements BlogService {
     @Resource
     private BlogRepository blogRepository;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public Blog get(Long id) {
+    public Blog save(Blog blog) {
+        blog.setId(null);
+        blog.setViews(0);
+        return blogRepository.save(blog);
+    }
+
+    @Override
+    public Blog get(long id) {
         return blogRepository.findById(id).orElse(null);
     }
 
@@ -55,17 +65,27 @@ public class BlogServiceImpl implements BlogService {
         }, pageable);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     @Override
-    public Blog save(Blog blog) {
-        blog.setId(null);
-        blog.setViews(0);
-        return blogRepository.save(blog);
+    public Page<Blog> list(Pageable pageable) {
+        return blogRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Blog> listRecommendTop(int size) {
+        Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
+        Pageable pageable = PageRequest.of(0, size, sort);
+        return blogRepository.findRecommendTop(pageable);
+    }
+
+    @Override
+    public List<Blog> listTop(int size, Sort sort) {
+        Pageable pageable = PageRequest.of(0, size, sort);
+        return blogRepository.findTop(pageable);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public Blog update(Long id, Blog blog) {
+    public Blog update(long id, Blog blog) {
         Blog b = blogRepository.findById(id).orElseThrow(() -> new NotFoundException("不存在该记录：id = " + id));
         // 如果blog中的属性值为null，就不覆盖
         BeanUtils.copyProperties(blog, b, MyBeanUtils.getNullPropertyNames(blog));
@@ -74,7 +94,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void delete(Long id) {
+    public void delete(long id) {
         blogRepository.deleteById(id);
     }
 }

@@ -54,6 +54,16 @@ public interface TagService {
     List<Tag> listByIds(String ids);
 
     /**
+     * description: 根据标签下的博客数量排名，返回前几名
+     *
+     * @param size 前几个
+     * @return 前 {@code size} 名的 {@code Tag}
+     * @author xiaosaguo
+     * @date 2020/05/15 23:14
+     */
+    List<Tag> listTop(Integer size);
+
+    /**
      * description: 根据主键查询
      *
      * @param id tag
@@ -62,6 +72,16 @@ public interface TagService {
      * @date 2020-04-28 05:27
      */
     Tag get(Long id);
+
+    /**
+     * description: 根据名称查询
+     *
+     * @param name 标签名称
+     * @return net.xiaosaguo.blog.po.Tag
+     * @author xiaosaguo
+     * @date 2020-04-30 19:41
+     */
+    Tag getByName(String name);
 
     /**
      * description: 根据主键更新
@@ -83,14 +103,5 @@ public interface TagService {
      */
     void delete(Long id);
 
-    /**
-     * description: 根据名称查询
-     *
-     * @param name 标签名称
-     * @return net.xiaosaguo.blog.po.Tag
-     * @author xiaosaguo
-     * @date 2020-04-30 19:41
-     */
-    Tag getByName(String name);
 
 }

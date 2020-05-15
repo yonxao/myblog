@@ -5,7 +5,9 @@ import net.xiaosaguo.blog.exception.NotFoundException;
 import net.xiaosaguo.blog.po.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -51,28 +53,21 @@ public class TagServiceImpl implements TagService {
         return repository.findAllById(strConvertToLongList(ids));
     }
 
-    /**
-     * description: 用逗号拼接数字的字符串转换为 {@code List<Long>}
-     *
-     * @param str 用逗号拼接数字的字符串，eg： 1,2,3
-     * @return 类型为 {@code Long} 的主键集合
-     * @author xiaosaguo
-     * @date 2020/05/14 06:22
-     */
-    private List<Long> strConvertToLongList(String str) {
-        List<Long> longList = new ArrayList<>();
-        if (!StringUtils.isEmpty(str)) {
-            String[] strArr = str.split(",");
-            for (String s : strArr) {
-                longList.add(Long.valueOf(s));
-            }
-        }
-        return longList;
+    @Override
+    public List<Tag> listTop(Integer size) {
+        Sort sort = new Sort(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = PageRequest.of(0, size, sort);
+        return repository.findTop(pageable);
     }
 
     @Override
     public Tag get(Long id) {
         return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Tag getByName(String name) {
+        return repository.findByName(name);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -90,8 +85,22 @@ public class TagServiceImpl implements TagService {
         repository.deleteById(id);
     }
 
-    @Override
-    public Tag getByName(String name) {
-        return repository.findByName(name);
+    /**
+     * description: 用逗号拼接数字的字符串转换为 {@code List<Long>}
+     *
+     * @param str 用逗号拼接数字的字符串，eg： 1,2,3
+     * @return 类型为 {@code Long} 的主键集合
+     * @author xiaosaguo
+     * @date 2020/05/14 06:22
+     */
+    private List<Long> strConvertToLongList(String str) {
+        List<Long> longList = new ArrayList<>();
+        if (!StringUtils.isEmpty(str)) {
+            String[] strArr = str.split(",");
+            for (String s : strArr) {
+                longList.add(Long.valueOf(s));
+            }
+        }
+        return longList;
     }
 }

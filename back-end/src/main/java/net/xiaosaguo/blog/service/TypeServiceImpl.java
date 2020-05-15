@@ -5,7 +5,9 @@ import net.xiaosaguo.blog.exception.NotFoundException;
 import net.xiaosaguo.blog.po.Type;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +46,13 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> list() {
         return typeRepository.findAll();
+    }
+
+    @Override
+    public List<Type> listTop(Integer size) {
+        Sort sort = new Sort(Sort.Direction.DESC, "blogs.size");
+        Pageable pageable = PageRequest.of(0, size, sort);
+        return typeRepository.findTop(pageable);
     }
 
     @Transactional(rollbackFor = Exception.class)
