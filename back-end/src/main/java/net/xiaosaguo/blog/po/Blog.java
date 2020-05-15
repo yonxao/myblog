@@ -52,6 +52,9 @@ public class Blog {
     private boolean published;
     private boolean recommend;
 
+    @NotBlank(message = "博客描述不能为空")
+    private String description;
+
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     @Column(updatable = false)

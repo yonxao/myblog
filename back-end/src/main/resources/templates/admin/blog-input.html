@@ -161,7 +161,7 @@
                 <div class="field">
                     <div class="ui left labeled action input">
                         <label class="ui compact teal basic label">标签</label>
-                        <div class="ui fluid multiple search selection dropdown">
+                        <div class="ui tag fluid multiple search selection dropdown">
                             <div class="default text">标签</div>
                             <input type="hidden" name="tagIds" th:value="*{tagIds}">
                             <div class="menu">
@@ -187,6 +187,10 @@
                     <input id="firstPicture" type="text" name="firstPicture" placeholder="封面图片地址"
                            th:value="*{firstPicture}">
                 </div>
+            </div>
+            <!--博客描述-->
+            <div class="required field">
+                <textarea name="description" th:text="*{description}" placeholder="博客描述..." maxlength="200"></textarea>
             </div>
             <!--推荐、转载声明、赞赏、评论-->
             <div class="inline fields">
@@ -341,6 +345,11 @@
         $('#blog-form').submit();
     });
 
+    // 可以让多选框自定义选项，但是后端实现太复杂了，先不做了
+    // $('.ui.tag.dropdown').dropdown({
+    //     allowAdditions: true
+    // });
+
     $('.ui.form').form({
         fields: {
             title: {
@@ -369,6 +378,13 @@
                 rules: [{
                     type: 'empty',
                     prompt: '封面：请输入博客封面'
+                }]
+            },
+            description: {
+                identifier: 'description',
+                rules: [{
+                    type: 'empty',
+                    prompt: '描述：请输入博客描述'
                 }]
             }
         }
