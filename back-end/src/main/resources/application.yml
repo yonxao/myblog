@@ -3,4 +3,6 @@ spring:
     mode: HTML
   profiles:
     active: dev
+  jackson:
+    time-zone: GMT+8
 
