@@ -3,6 +3,7 @@ package net.xiaosaguo.blog.service;
 import net.xiaosaguo.blog.dao.BlogRepository;
 import net.xiaosaguo.blog.exception.NotFoundException;
 import net.xiaosaguo.blog.po.Blog;
+import net.xiaosaguo.blog.util.MyBeanUtils;
 import net.xiaosaguo.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
@@ -66,8 +67,8 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog update(Long id, Blog blog) {
         Blog b = blogRepository.findById(id).orElseThrow(() -> new NotFoundException("不存在该记录：id = " + id));
-        BeanUtils.copyProperties(blog, b);
-        b.setId(id);
+        // 如果blog中的属性值为null，就不覆盖
+        BeanUtils.copyProperties(blog, b, MyBeanUtils.getNullPropertyNames(blog));
         return blogRepository.save(b);
     }
 
