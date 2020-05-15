@@ -68,8 +68,8 @@
     <div class="ui container">
         <form action="#" method="post" class="ui form"
               th:object="${tag}"
-              th:method="*{id}==null ? post : put"
-              th:action="*{id}==null ? @{/admin/tag} : @{/admin/tag/{id}(id=*{id})}"
+              th:method="*{id} == null ? POST : PUT"
+              th:action="*{id} == null ? @{/admin/tag} : @{/admin/tag/{id}(id=*{id})}"
         >
             <input type="hidden" name="id" th:value="*{id}">
 

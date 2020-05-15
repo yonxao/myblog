@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <!--引入semantic-ui框架-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/me.css">
 
     <title>分类编辑</title>
@@ -68,15 +68,15 @@
     <div class="ui container">
         <form action="#" method="post" class="ui form"
               th:object="${type}"
-              th:method="*{id}==null ? post : put"
+              th:method="*{id}==null ? POST : PUT"
               th:action="*{id}==null ? @{/admin/type} : @{/admin/type/{id}(id=*{id})}"
         >
             <input type="hidden" name="id" th:value="*{id}">
 
             <div class="required field">
                 <div class="ui left labeled input">
-                    <label class="ui teal basic label">名称</label>
-                    <input type="text" name="name" placeholder="请输入分类名称" th:value="*{name}">
+                    <label for="name" class="ui teal basic label">名称</label>
+                    <input id="name" type="text" name="name" placeholder="请输入分类名称" th:value="*{name}">
                 </div>
             </div>
 
@@ -163,14 +163,14 @@
 
 <!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
 <!--引入jquery-->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="../../static/js/jquery.min.js"></script>
 <!--引入semantic-ui js-->
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="../../static/js/semantic.min.js"></script>
 <!--/*/</th:block>/*/-->
 
 <script>
 
-    $('.menu.toggle').click(function () {
+    $('.menu.toggle').on('click', function () {
         /*toggleClass，开关事件，开关样式*/
         $('.m-item').toggleClass('m-mobile-hide');
     });

@@ -190,7 +190,9 @@
             </div>
             <!--博客描述-->
             <div class="required field">
-                <textarea name="description" th:text="*{description}" placeholder="博客描述..." maxlength="200"></textarea>
+                <label for="description"></label>
+                <textarea id="description" name="description" th:text="*{description}" placeholder="博客描述..."
+                          maxlength="200"></textarea>
             </div>
             <!--推荐、转载声明、赞赏、评论-->
             <div class="inline fields">
