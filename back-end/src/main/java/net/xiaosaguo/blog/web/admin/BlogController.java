@@ -46,7 +46,7 @@ public class BlogController {
     private TagService tagService;
 
     @GetMapping
-    public String list(@PageableDefault(size = 2, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public String list(@PageableDefault(sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                        BlogQuery blogQuery,
                        Model model) {
         model.addAttribute("page", blogService.list(pageable, blogQuery));
@@ -55,7 +55,7 @@ public class BlogController {
     }
 
     @PostMapping("/search")
-    public String search(@PageableDefault(size = 2, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
+    public String search(@PageableDefault(sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                          BlogQuery blogQuery,
                          Model model) {
         model.addAttribute("page", blogService.list(pageable, blogQuery));
@@ -87,7 +87,7 @@ public class BlogController {
                        HttpSession session,
                        Model model,
                        RedirectAttributes attributes) {
-        // 参数校验
+        // 参数校验 如果可以自定义标签，得到的参数： 3,xuexi
         if (bindingResult.hasErrors()) {
             model.addAttribute("blog", blog);
             initTypesAndTags(model);
