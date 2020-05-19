@@ -3,6 +3,7 @@ package net.xiaosaguo.blog.service;
 import net.xiaosaguo.blog.dao.BlogRepository;
 import net.xiaosaguo.blog.exception.NotFoundException;
 import net.xiaosaguo.blog.po.Blog;
+import net.xiaosaguo.blog.util.MarkdownUtils;
 import net.xiaosaguo.blog.util.MyBeanUtils;
 import net.xiaosaguo.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
@@ -44,6 +45,16 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog get(long id) {
         return blogRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public Blog getAndConvert(long id) {
+        Blog blog = blogRepository.findById(id).orElseThrow(() -> new NotFoundException("该博客不存在"));
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog, b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
     }
 
     @Override

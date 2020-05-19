@@ -37,6 +37,16 @@ public interface BlogService {
     Blog get(long id);
 
     /**
+     * description: 根据ID查询
+     *
+     * @param id {@code Blog} 的ID
+     * @return 根据 {@code id} 查询出的 {@code Blog}
+     * @author xiaosaguo
+     * @date 2020/05/02 09:41
+     */
+    Blog getAndConvert(long id);
+
+    /**
      * description: 根据条件分页查询
      *
      * @param pageable  分页参数
