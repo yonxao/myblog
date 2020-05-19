@@ -1,6 +1,7 @@
 package net.xiaosaguo.blog.dao;
 
 import net.xiaosaguo.blog.po.Blog;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -39,4 +40,16 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
      */
     @Query("select t from Blog t where t.recommend = true")
     List<Blog> findRecommendTop(Pageable pageable);
+
+    /**
+     * description: 根据关键字对博客标题和内容进行匹配
+     *
+     * @param keyword  模糊查询关键字
+     * @param pageable 分页参数
+     * @return 根据关键字进行模糊查询匹配到的结果
+     * @author xiaosaguo
+     * @date 2020/05/19 23:55
+     */
+    @Query("select blog from Blog blog where upper(blog.title)  like upper(?1)  or upper(blog.content)  like upper(?1)")
+    Page<Blog> likeTitleOrContent(String keyword, Pageable pageable);
 }

@@ -78,6 +78,18 @@ public interface BlogService {
      */
     List<Blog> listTop(int size, Sort sort);
 
+
+    /**
+     * description: 根据关键字对博客标题和内容进行匹配
+     *
+     * @param keyword  模糊查询关键字
+     * @param pageable 分页参数
+     * @return 根据关键字进行模糊查询匹配到的结果
+     * @author xiaosaguo
+     * @date 2020/05/19 23:55
+     */
+    Page<Blog> likeTitleOrContent(String keyword, Pageable pageable);
+
     /**
      * description: 根据ID更新
      *

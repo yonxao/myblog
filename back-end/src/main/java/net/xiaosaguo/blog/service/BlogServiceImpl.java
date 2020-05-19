@@ -83,6 +83,11 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.findTop(pageable);
     }
 
+    @Override
+    public Page<Blog> likeTitleOrContent(String keyword, Pageable pageable) {
+        return blogRepository.likeTitleOrContent(keyword, pageable);
+    }
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Blog update(long id, Blog blog) {
