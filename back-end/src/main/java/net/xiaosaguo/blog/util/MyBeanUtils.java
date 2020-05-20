@@ -30,7 +30,7 @@ public class MyBeanUtils {
         List<String> nullPropertyNameList = new ArrayList<>();
         for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
             String propertyName = propertyDescriptor.getName();
-            if (Objects.isNull(propertyDescriptor.getValue(propertyName))) {
+            if (Objects.isNull(beanWrapper.getPropertyValue(propertyName))) {
                 nullPropertyNameList.add(propertyName);
             }
         }
