@@ -62,6 +62,16 @@ public class IndexController {
         return "/tags";
     }
 
+    @GetMapping("/types")
+    public String types() {
+        return "/types";
+    }
+
+    @GetMapping("/archives")
+    public String archives() {
+        return "/archives";
+    }
+
     @GetMapping("/about")
     public String about() {
         return "/about";
