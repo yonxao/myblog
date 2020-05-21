@@ -6,3 +6,6 @@ spring:
   jackson:
     time-zone: GMT+8
 
+comment:
+  avatar: /images/default-avatar.jpg
+
