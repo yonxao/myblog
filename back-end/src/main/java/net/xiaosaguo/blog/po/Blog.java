@@ -3,11 +3,14 @@ package net.xiaosaguo.blog.po;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +29,9 @@ public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "标题不能为空")
+
+    @Length(max = 60, message = "博客标题不能超过30个字符")
+    @NotBlank(message = "博客标题不能为空")
     private String title;
 
     /**
@@ -43,15 +48,20 @@ public class Blog {
     /**
      * description: 博客类型 ： 原创、转载、翻译
      */
+    @Pattern(regexp = "^原创$|^转载$|^翻译$", message = "博客类型值有误")
     @NotBlank(message = "博客类型不能为空")
     private String flag;
+
+    @Min(value = 0, message = "浏览次数不能为负数")
     private Integer views;
+
     private boolean appreciation;
     private boolean shareStatement;
     private boolean commentable;
     private boolean published;
     private boolean recommend;
 
+    @Length(max = 255, message = "博客描述不能超过255个字符")
     @NotBlank(message = "博客描述不能为空")
     private String description;
 

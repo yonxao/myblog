@@ -1,6 +1,7 @@
 package net.xiaosaguo.blog.po;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -21,8 +22,10 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Length(max = 20, message = "标签名称不能超过20个字符")
     @NotBlank(message = "标签名称不能为空")
-    @Column(unique=true, nullable=false)
+    @Column(unique = true, nullable = false)
     private String name;
 
     @ManyToMany(mappedBy = "tags")
