@@ -47,6 +47,7 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.findById(id).orElse(null);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public Blog getAndConvert(long id) {
         Blog blog = blogRepository.findById(id).orElseThrow(() -> new NotFoundException("该博客不存在"));
@@ -54,6 +55,8 @@ public class BlogServiceImpl implements BlogService {
         BeanUtils.copyProperties(blog, b);
         String content = b.getContent();
         b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        // 浏览次数累加
+        blogRepository.updateViews(id);
         return b;
     }
 

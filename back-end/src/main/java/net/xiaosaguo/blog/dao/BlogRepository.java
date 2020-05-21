@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -52,4 +53,16 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
      */
     @Query("select blog from Blog blog where upper(blog.title)  like upper(?1)  or upper(blog.content)  like upper(?1)")
     Page<Blog> likeTitleOrContent(String keyword, Pageable pageable);
+
+    /**
+     * description: 给博客浏览次数 +1
+     *
+     * @param id 博客id
+     * @return int 受影响的行数
+     * @author xiaosaguo
+     * @date 2020/05/21 21:33
+     */
+    @Modifying
+    @Query("update Blog b set b.views = b.views+1 where b.id = ?1")
+    int updateViews(Long id);
 }
