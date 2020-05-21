@@ -17,7 +17,7 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     /**
-     * description: 根据博客 id 查询该博客的所有评论
+     * description: 根据博客 id 查询该博客的顶层评论
      *
      * @param blogId 博客 id
      * @param sort   排序参数
@@ -25,6 +25,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
      * @author xiaosaguo
      * @date 2020/05/21 07:08
      */
-    List<Comment> findByBlogId(Long blogId, Sort sort);
+    List<Comment> findByBlogIdAndParentCommentNull(Long blogId, Sort sort);
 
 }

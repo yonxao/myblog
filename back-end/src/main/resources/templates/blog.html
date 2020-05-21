@@ -605,12 +605,16 @@ h5,h6{font-size:1em;}
                                 <img src="https://picsum.photos/id/1027/100/100" th:src="@{${comment.avatar}}" alt="">
                             </a>
                             <div class="content">
-                                <a class="author" th:text="${comment.nickname}">Matt</a>
+                                <a class="author">
+                                    <span th:text="${comment.nickname}">Matt</span>
+                                    <div class="ui mini basic orange left pointing label m-padded-mini"
+                                         th:if="${comment.owner}">博主
+                                    </div>
+                                </a>
                                 <div class="metadata">
                                     <span class="date"
                                           th:text="${#dates.format(comment.createTime,'yyyy-MM-dd HH:mm')}">
-                                        Today at 5:42PM
-                                    </span>
+                                        Today at 5:42PM</span>
                                 </div>
                                 <div class="text" th:text="${comment.content}">
                                     How artistic!
@@ -621,6 +625,39 @@ h5,h6{font-size:1em;}
                                        data-commentid="1" data-commentnickname="Matt"
                                        th:attr="data-commentid=${comment.id},data-commentnickname=${comment.nickname}"
                                        onclick="reply(this)">回复</a>
+                                </div>
+                            </div>
+                            <div class="comments" th:unless="${comment.replyComments.isEmpty()}">
+                                <div class="comment" th:each="reply : ${comment.replyComments}">
+                                    <a class="avatar">
+                                        <img src="https://picsum.photos/id/1027/100/100" th:src="@{${reply.avatar}}"
+                                             alt="">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">
+                                            <span th:text="${reply.nickname}">Matt</span>
+                                            <div class="ui mini basic orange left pointing label m-padded-mini"
+                                                 th:if="${reply.owner}">博主
+                                            </div>
+                                            <span class="m-teal"> 回复 </span>
+                                            <span th:text="${reply.parentComment.nickname}">Apple</span>
+                                        </a>
+                                        <div class="metadata">
+                                            <span class="date"
+                                                  th:text="${#dates.format(reply.createTime,'yyyy-MM-dd HH:mm')}">
+                                                Today at 5:42PM</span>
+                                        </div>
+                                        <div class="text" th:text="${reply.content}">
+                                            How artistic!
+                                        </div>
+                                        <div class="actions">
+                                            <!--data-xxx 如果用大写获取不到值-->
+                                            <a class="reply"
+                                               data-commentid="1" data-commentnickname="Matt"
+                                               th:attr="data-commentid=${reply.id},data-commentnickname=${reply.nickname}"
+                                               onclick="reply(this)">回复</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -699,14 +736,16 @@ h5,h6{font-size:1em;}
                     <div class="field m-mobile-wide m-margin-bottom-small">
                         <div class="ui left icon input">
                             <i class="user icon"></i>
-                            <input id="nickname" name="nickname" type="text" placeholder="昵称">
+                            <input id="nickname" name="nickname" type="text" placeholder="昵称"
+                                   th:value="${session.user} != null ? ${session.user.nickname} : null">
                         </div>
                     </div>
                     <!--邮箱-->
                     <div class="field m-mobile-wide m-margin-bottom-small">
                         <div class="ui left icon input">
                             <i class="mail icon"></i>
-                            <input id="email" name="email" type="text" placeholder="邮箱">
+                            <input id="email" name="email" type="text" placeholder="邮箱"
+                                   th:value="${session.user} != null ? ${session.user.email} : null">
                         </div>
                     </div>
                     <!--提交按钮-->
@@ -717,8 +756,19 @@ h5,h6{font-size:1em;}
                     </div>
                 </div>
             </div>
-
         </div>
+<!--        &lt;!&ndash;前端校验错误提示&ndash;&gt;
+        <div class="ui error message"></div>
+        &lt;!&ndash;后端校验错误提示&ndash;&gt;
+        <div th:if="${#fields.hasErrors()}" class="ui negative message">
+            <i class="close icon"></i>
+            <div class="header">校验失败</div>
+            &lt;!&ndash;<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">提交的信息不符合规则</p>&ndash;&gt;
+            <div class="ui bulleted list">
+                &lt;!&ndash;th:each遍历错误并通过ul列表显示出来&ndash;&gt;
+                <div class="item" th:each="err:${#fields.errors('*')}" th:text="${err}">输入有误</div>
+            </div>
+        </div>-->
     </div>
 </div>
 
@@ -808,6 +858,10 @@ h5,h6{font-size:1em;}
 
 
 <script th:inline="javascript">
+    $(function () {
+        $('#comment-container').load(/*[[@{/comments/{blogId}(blogId=${blog.id})}]]*/"comments/6");
+    });
+
     $('.menu.toggle').on('click', function () {
         /*toggleClass，开关事件，开关样式*/
         $('.m-item').toggleClass('m-mobile-hide');
@@ -918,7 +972,7 @@ h5,h6{font-size:1em;}
                 "email": $('#email').val(),
                 "content": $('[name="content"]').val()
             }, function (responseText, status, jqXHR) {
-                $(window).scrollTo($('#comment-container'), 500);
+                // $(window).scrollTo($('#comment-container'), 500);
                 clear();
             }
         );

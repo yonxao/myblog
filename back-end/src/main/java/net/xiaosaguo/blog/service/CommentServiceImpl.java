@@ -3,11 +3,13 @@ package net.xiaosaguo.blog.service;
 import net.xiaosaguo.blog.dao.CommentRepository;
 import net.xiaosaguo.blog.exception.NotFoundException;
 import net.xiaosaguo.blog.po.Comment;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,8 +26,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> listByBlogId(Long blogId) {
-        Sort sort = new Sort(Sort.Direction.DESC, "createTime");
-        return commentRepository.findByBlogId(blogId, sort);
+        // 该博客的顶层评论
+        List<Comment> commentList = commentRepository.findByBlogIdAndParentCommentNull(blogId, Sort.by("createTime"));
+        return transCommentList(commentList);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -39,5 +42,46 @@ public class CommentServiceImpl implements CommentService {
             comment.setParentComment(null);
         }
         return commentRepository.save(comment);
+    }
+
+    /**
+     * 深拷贝一个 commentList
+     *
+     * @param commentList 评论
+     */
+    private List<Comment> transCommentList(List<Comment> commentList) {
+        List<Comment> newList = new ArrayList<>();
+        for (Comment comment : commentList) {
+            Comment c = new Comment();
+            BeanUtils.copyProperties(comment, c);
+            newList.add(c);
+        }
+
+        for (Comment comment : newList) {
+            // 如果顶层评论有回复，将回复放在临时集合中
+            if (!comment.getReplyComments().isEmpty()) {
+                // 要遍历出的顶层评论所有子评论的集合
+                List<Comment> tempReplyList = new ArrayList<>();
+                getTopChild(comment, tempReplyList);
+                comment.setReplyComments(tempReplyList);
+            }
+        }
+        return newList;
+    }
+
+    /**
+     * 递归迭代将所有子回复聚集到顶层评论下
+     *
+     * @param comment       被迭代的对象
+     * @param tempReplyList 要遍历出的顶层评论所有子评论的集合
+     */
+    private void getTopChild(Comment comment, List<Comment> tempReplyList) {
+        // 如果顶层评论有回复，将回复放在临时集合中
+        if (!comment.getReplyComments().isEmpty()) {
+            tempReplyList.addAll(comment.getReplyComments());
+            for (Comment replyComment : comment.getReplyComments()) {
+                getTopChild(replyComment, tempReplyList);
+            }
+        }
     }
 }
