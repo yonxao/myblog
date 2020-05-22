@@ -3,7 +3,10 @@ package net.xiaosaguo.blog.aspect;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -12,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 /**
- * description: 使用aop记录请求日志
+ * description: 使用 aop 记录请求日志
  *
  * @author xiaosaguo
- * @version 2 xiaosaguo 在日志对象中增加请求方式
+ * @date 2020/04/16
  */
 @Aspect
 @Component
@@ -43,11 +46,11 @@ public class LogAspect {
         log.debug("------request-----before------end----------");
     }
 
-    @After("log()")
-    public void doAfter() {
-        log.debug("------request-----after------start--------");
-        log.debug("------request-----after------end----------");
-    }
+    /// @After("log()")
+    /// public void doAfter() {
+    ///     log.debug("------request-----after------start--------");
+    ///     log.debug("------request-----after------end----------");
+    /// }
 
     @AfterReturning(returning = "result", pointcut = "log()")
     public void doAfterReturn(Object result) {
