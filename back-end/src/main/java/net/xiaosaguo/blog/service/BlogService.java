@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -109,6 +110,24 @@ public interface BlogService {
      * @date 2020/05/19 23:55
      */
     Page<Blog> likeTitleOrContent(String keyword, Pageable pageable);
+
+    /**
+     * description: 博客归档
+     *
+     * @return 归档后的博客，Map key 为年份，value 为该年份博客集合
+     * @author xiaosaguo
+     * @date 2020/05/22 11:15
+     */
+    Map<String, List<Blog>> archivesBlog();
+
+    /**
+     * description: 统计有多少篇博客
+     *
+     * @return 博客总数
+     * @author xiaosaguo
+     * @date 2020/05/22 12:01
+     */
+    Long countBlog();
 
     /**
      * description: 根据ID更新

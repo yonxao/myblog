@@ -1,25 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <!--设置移动端访问缩放效果-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <!--引入semantic-ui框架-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
-
+    <link rel="stylesheet" href="../static/css/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
+
     <title>归档</title>
 </head>
 
 <body>
 
 <!--导航-->
-<!--ui:表示使用semantic提供的UI组件-->
-<!--inverted:反转颜色-->
-<!--attached:附加，连接，将两个片段连到一起，圆角-->
-<!--segment:片段（UI组件）-->
-<nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+<nav th:replace="_fragments :: menu(4)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <!--container:容器，包裹的元素会有响应式展现效果-->
     <div class="ui container">
         <!--menu:菜单（UI组件）-->
@@ -64,63 +61,64 @@
                     <h3 class="ui header teal">归档</h3>
                 </div>
                 <div class="right aligned column">
-                    共 <h3 class="ui orange header m-inline-block m-text-thin">124</h3> 篇博客
+                    共 <h3 class="ui orange header m-inline-block m-text-thin" th:text="${blogCount}">124</h3> 篇博客
                 </div>
             </div>
         </div>
-
-        <h3 class="ui center aligned header">2019</h3>
-
-        <div class="ui fluid vertical menu">
-            <a href="#" target="_blank" class="item">
+        <th:block th:each="item : ${archivesMap}">
+            <h3 class="ui center aligned header" th:text="${item.key}">2019</h3>
+            <div class="ui fluid vertical menu">
+                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="item"
+                   th:each="blog : ${item.value}">
+                    <span>
+                        <i class="mini teal circle icon"></i>&nbsp;&nbsp;
+                        <span th:text="${blog.title}">关于刻意联系的清单</span>
+                        <span class="ui teal basic left pointing label m-padded-mini"
+                              th:text="${#dates.format(blog.updateTime,'MM / dd')}">08 / 03</span>
+                    </span>
+                    <div class="ui orange basic left pointing label m-padded-mini" th:text="${blog.flag}">原创</div>
+                </a>
+                <!--/*-->
+                <a href="#" target="_blank" class="item">
                 <span>
-                <i class="mini teal circle icon"></i>关于刻意联系的清单
-                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                    <i class="mini teal circle icon"></i>&nbsp;&nbsp;
+                    关于刻意联系的清单
+                    <span class="ui teal basic left pointing label m-padded-mini">08 / 03</span>
                 </span>
-                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
-            </a>
-            <a href="#" target="_blank" class="item">
+                    <div class="ui orange basic left pointing label m-padded-mini">原创</div>
+                </a>
+                <a href="#" target="_blank" class="item">
                 <span>
-                <i class="mini teal circle icon"></i>关于刻意联系的清单
-                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                    <i class="mini teal circle icon"></i>&nbsp;&nbsp;
+                    关于刻意联系的清单
+                    <span class="ui teal basic left pointing label m-padded-mini">08 / 03</span>
                 </span>
-                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
-            </a>
-            <a href="#" target="_blank" class="item">
-                <span>
-                <i class="mini teal circle icon"></i>关于刻意联系的清单
-                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
-                </span>
-                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
-            </a>
-        </div>
-
+                    <div class="ui orange basic left pointing label m-padded-mini">原创</div>
+                </a>
+                <!--*/-->
+            </div>
+        </th:block>
+        <!--/*-->
         <h3 class="ui center aligned header">2018</h3>
-
         <div class="ui fluid vertical menu">
             <a href="#" target="_blank" class="item">
                 <span>
-                <i class="mini teal circle icon"></i>关于刻意联系的清单
-                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                    <i class="mini teal circle icon"></i>&nbsp;&nbsp;
+                    关于刻意联系的清单
+                    <span class="ui teal basic left pointing label m-padded-mini">08 / 03</span>
                 </span>
                 <div class="ui orange basic left pointing label m-padded-mini">原创</div>
             </a>
             <a href="#" target="_blank" class="item">
                 <span>
-                <i class="mini teal circle icon"></i>关于刻意联系的清单
-                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
-                </span>
-                <div class="ui orange basic left pointing label m-padded-mini">原创</div>
-            </a>
-            <a href="#" target="_blank" class="item">
-                <span>
-                <i class="mini teal circle icon"></i>关于刻意联系的清单
-                <div class="ui teal basic left pointing label m-padded-mini">2019年8月</div>
+                    <i class="mini teal circle icon"></i>&nbsp;&nbsp;
+                    关于刻意联系的清单
+                    <span class="ui teal basic left pointing label m-padded-mini">08 / 03</span>
                 </span>
                 <div class="ui orange basic left pointing label m-padded-mini">原创</div>
             </a>
         </div>
-
+        <!--*/-->
     </div>
 </div>
 
@@ -128,8 +126,7 @@
 <br>
 
 <!--底部footer-->
-<!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
-<footer class="ui inverted vertical segment m-padded-tb-massive">
+<footer th:replace="_fragments :: footer" class="ui inverted vertical m-padded-tb-massive segment">
     <div class="ui center aligned container">
         <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
         <!--divided:显示分割线-->
@@ -172,10 +169,12 @@
     </div>
 </footer>
 
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <!--引入jquery-->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="../static/js/jquery.min.js"></script>
 <!--引入semantic-ui js-->
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="../static/js/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
 
 <script>
     $('.menu.toggle').click(function () {
@@ -183,5 +182,6 @@
         $('.m-item').toggleClass('m-mobile-hide');
     });
 </script>
+
 </body>
 </html>

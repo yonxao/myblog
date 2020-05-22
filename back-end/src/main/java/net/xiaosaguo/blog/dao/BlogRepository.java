@@ -65,4 +65,26 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     @Modifying
     @Query("update Blog b set b.views = b.views+1 where b.id = ?1")
     int updateViews(Long id);
+
+    /**
+     * description: 根据博客的更新时间拿到所有的年份
+     *
+     * @return 发布博客的所有年份
+     * @author xiaosaguo
+     * @date 2020/05/22 11:22
+     */
+    @Query(value = "SELECT date_format(b.update_time, '%Y') AS year FROM t_blog b GROUP BY year ORDER BY year DESC",
+            nativeQuery = true)
+    List<String> findYearList();
+
+    /**
+     * description: 根据年份查询所有博客
+     *
+     * @param year 年份
+     * @return 根据年份查询到的博客集合
+     * @author xiaosaguo
+     * @date 2020/05/22 11:54
+     */
+    @Query(value = "SELECT * FROM t_blog b WHERE date_format(b.update_time, '%Y') = ?", nativeQuery = true)
+    List<Blog> findByYear(String year);
 }

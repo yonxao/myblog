@@ -19,7 +19,9 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -111,6 +113,21 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Page<Blog> likeTitleOrContent(String keyword, Pageable pageable) {
         return blogRepository.likeTitleOrContent(keyword, pageable);
+    }
+
+    @Override
+    public Map<String, List<Blog>> archivesBlog() {
+        Map<String, List<Blog>> map = new LinkedHashMap<>();
+        List<String> yearList = blogRepository.findYearList();
+        yearList.forEach(year -> {
+            map.put(year, blogRepository.findByYear(year));
+        });
+        return map;
+    }
+
+    @Override
+    public Long countBlog() {
+        return blogRepository.count();
     }
 
     @Transactional(rollbackFor = Exception.class)

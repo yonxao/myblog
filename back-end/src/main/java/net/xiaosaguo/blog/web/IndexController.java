@@ -100,7 +100,9 @@ public class IndexController {
     }
 
     @GetMapping("/archives")
-    public String archives() {
+    public String archives(Model model) {
+        model.addAttribute("archivesMap", blogService.archivesBlog());
+        model.addAttribute("blogCount", blogService.countBlog());
         return ARCHIVES_VIEW;
     }
 
