@@ -35,17 +35,19 @@ public class CommentController {
     @Value("${comment.avatar}")
     private String defaultAvatar;
 
+    public static final String BLOG_COMMENT_VIEW = "blog :: commentList";
+
     @GetMapping("/comments/{blogId}")
     public String comments(@PathVariable Long blogId, Model model) {
         model.addAttribute("comments", commentService.listByBlogId(blogId));
-        return "blog :: commentList";
+        return BLOG_COMMENT_VIEW;
     }
 
     @PostMapping("/comments")
     public String post(@Valid Comment comment, BindingResult bindingResult, HttpSession session) {
 
         if (bindingResult.hasErrors()) {
-            return "blog :: commentList";
+            return BLOG_COMMENT_VIEW;
         }
 
         Blog blog = blogService.get(comment.getBlog().getId());

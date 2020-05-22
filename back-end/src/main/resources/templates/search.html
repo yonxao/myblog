@@ -73,7 +73,8 @@
         <!--文章列表-->
         <div class="ui top attached teal segment">
             <!--一篇文章-->
-            <div class="ui padded vertical m-padded-tb-large segment" th:each="blog : ${page.content}">
+            <div class="ui padded vertical m-padded-tb-large m-mobile-lr-clear segment"
+                 th:each="blog : ${page.content}">
                 <!--mobile reversed:手机端反转布局-->
                 <div class="ui middle aligned mobile reversed stackable grid">
                     <!--文章简介，11格-->
@@ -137,7 +138,6 @@
                 </div>
             </div>
         </div>
-        <!--底部翻页-->
         <!--底部翻页-->
         <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
             <div class="ui middle aligned two column grid">
