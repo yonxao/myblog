@@ -43,6 +43,7 @@ public class IndexController {
     public static final String TYPES_VIEW = "types";
     public static final String ARCHIVES_VIEW = "archives";
     public static final String ABOUT_VIEW = "about";
+    public static final String FOOTER_BLOG_LIST_VIEW = "_fragments::footerBlogList";
 
     @GetMapping("/")
     public String index(@PageableDefault(sort = "updateTime", direction = Sort.Direction.DESC) Pageable pageable,
@@ -109,6 +110,12 @@ public class IndexController {
     @GetMapping("/about")
     public String about() {
         return ABOUT_VIEW;
+    }
+
+    @GetMapping("/footer/blogs")
+    public String footerBlogList(Model model) {
+        model.addAttribute("blogs", blogService.listRecommendTop(3));
+        return FOOTER_BLOG_LIST_VIEW;
     }
 
     @GetMapping("/test")
