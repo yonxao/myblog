@@ -545,13 +545,13 @@ h5,h6{font-size:1em;}
             </div>
 
             <!--赞赏-->
-            <div class="ui center aligned basic segment">
+            <div class="ui center aligned basic segment" th:if="${blog.appreciation}">
                 <!--circular:大圆角-->
                 <button id="payButton" class="ui basic circular orange button">赞赏</button>
             </div>
 
             <!--二维码-->
-            <div class="ui payQR flowing popup transition hidden">
+            <div class="ui payQR flowing popup transition hidden" style="z-index: 1!important;">
                 <div class="ui orange basic label">
                     <!--inherit:集成上层样式-->
                     <!--images:默认样式字体大小为0-->
@@ -574,7 +574,7 @@ h5,h6{font-size:1em;}
             </div>
         </div>
         <!--博客信息-->
-        <div class="ui attached positive message">
+        <div class="ui attached positive message" th:if="${blog.shareStatement}">
             <div class="ui middle aligned grid">
                 <div class="eleven wide column">
                     <ul class="list">
@@ -594,7 +594,7 @@ h5,h6{font-size:1em;}
             </div>
         </div>
         <!--留言区域-->
-        <div class="ui bottom attached segment">
+        <div class="ui bottom attached segment" th:if="${blog.commentable}">
             <!--留言区域列表-->
             <div id="comment-container" class="ui teal segment">
                 <div th:fragment="commentList">
@@ -757,18 +757,18 @@ h5,h6{font-size:1em;}
                 </div>
             </div>
         </div>
-<!--        &lt;!&ndash;前端校验错误提示&ndash;&gt;
-        <div class="ui error message"></div>
-        &lt;!&ndash;后端校验错误提示&ndash;&gt;
-        <div th:if="${#fields.hasErrors()}" class="ui negative message">
-            <i class="close icon"></i>
-            <div class="header">校验失败</div>
-            &lt;!&ndash;<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">提交的信息不符合规则</p>&ndash;&gt;
-            <div class="ui bulleted list">
-                &lt;!&ndash;th:each遍历错误并通过ul列表显示出来&ndash;&gt;
-                <div class="item" th:each="err:${#fields.errors('*')}" th:text="${err}">输入有误</div>
-            </div>
-        </div>-->
+        <!--        &lt;!&ndash;前端校验错误提示&ndash;&gt;
+                <div class="ui error message"></div>
+                &lt;!&ndash;后端校验错误提示&ndash;&gt;
+                <div th:if="${#fields.hasErrors()}" class="ui negative message">
+                    <i class="close icon"></i>
+                    <div class="header">校验失败</div>
+                    &lt;!&ndash;<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}">提交的信息不符合规则</p>&ndash;&gt;
+                    <div class="ui bulleted list">
+                        &lt;!&ndash;th:each遍历错误并通过ul列表显示出来&ndash;&gt;
+                        <div class="item" th:each="err:${#fields.errors('*')}" th:text="${err}">输入有误</div>
+                    </div>
+                </div>-->
     </div>
 </div>
 

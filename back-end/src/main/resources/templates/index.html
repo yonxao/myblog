@@ -583,7 +583,8 @@
                                 <i class="th icon"></i>分类
                             </div>
                             <div class="right aligned column">
-                                <a href="#" target="_blank">更多 <i class="angle double right icon"></i></a>
+                                <a href="#" th:href="@{types/-1}" target="_blank">更多
+                                    <i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
@@ -591,7 +592,8 @@
                     <div class="ui segment">
                         <!--fluid:填充外层容器-->
                         <div class="ui fluid vertical menu">
-                            <a href="#" class="item" th:each="type : ${types}">
+                            <a href="#" th:href="@{/types/{id}(id=${type.id})}" target="_blank" class="item"
+                               th:each="type : ${types}">
                                 <span th:text="${type.name}">学习日志</span>
                                 <!--已验证：${type.blogs.size()} 可以生效，${#arrays.length(type.blogs)}-->
                                 <div class="ui teal basic left pointing label" th:text="${type.blogs.size()}">13</div>
@@ -630,14 +632,15 @@
                                 <i class="tags icon"></i>标签
                             </div>
                             <div class="right aligned column">
-                                <a href="#" target="_blank">更多 <i class="angle double right icon"></i></a>
+                                <a href="#" th:href="@{/tags/-1}" target="_blank">更多
+                                    <i class="angle double right icon"></i></a>
                             </div>
                         </div>
                     </div>
                     <!--标签体-->
                     <div class="ui segment">
-                        <a href="#" th:each="tag : ${tags}"
-                           target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">
+                        <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" target="_blank" th:each="tag : ${tags}"
+                           class="ui teal basic left pointing label m-margin-tb-tiny">
                             <span th:text="${tag.name}">方法论</span>
                             <div th:text="${tag.blogs.size()}" class="detail">14</div>
                         </a>
