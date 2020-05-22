@@ -1,5 +1,6 @@
 package net.xiaosaguo.blog.web;
 
+import net.xiaosaguo.blog.po.Tag;
 import net.xiaosaguo.blog.po.Type;
 import net.xiaosaguo.blog.service.BlogService;
 import net.xiaosaguo.blog.service.TagService;
@@ -76,15 +77,25 @@ public class IndexController {
         if (id == -1) {
             id = typeList.get(0).getId();
         }
-        BlogQuery blogQuery = new BlogQuery(null, id, false);
+        BlogQuery blogQuery = new BlogQuery();
+        blogQuery.setTypeId(id);
         model.addAttribute("types", typeList);
         model.addAttribute("page", blogService.list(pageable, blogQuery));
         model.addAttribute("activeTypeId", id);
         return TYPES_VIEW;
     }
 
-    @GetMapping("/tags")
-    public String tags() {
+    @GetMapping("/tags/{id}")
+    public String tags(@PageableDefault(sort = "updateTime", direction = Sort.Direction.DESC) Pageable pageable,
+                       @PathVariable Long id,
+                       Model model) {
+        List<Tag> tagList = tagService.listTop(999);
+        if (id == -1) {
+            id = tagList.get(0).getId();
+        }
+        model.addAttribute("tags", tagList);
+        model.addAttribute("page", blogService.list(id, pageable));
+        model.addAttribute("activeTagId", id);
         return TAGS_VIEW;
     }
 

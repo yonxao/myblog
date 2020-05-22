@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,6 +76,17 @@ public class BlogServiceImpl implements BlogService {
             }
             query.where(predicates.toArray(new Predicate[0]));
             return null;
+        }, pageable);
+    }
+
+    @Override
+    public Page<Blog> list(Long tagId, Pageable pageable) {
+        return blogRepository.findAll(new Specification<Blog>() {
+            @Override
+            public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                Join<Object, Object> join = root.join("tags");
+                return criteriaBuilder.equal(join.get("id"), tagId);
+            }
         }, pageable);
     }
 

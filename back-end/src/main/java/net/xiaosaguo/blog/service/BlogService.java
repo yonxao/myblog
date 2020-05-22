@@ -58,6 +58,17 @@ public interface BlogService {
     Page<Blog> list(Pageable pageable, BlogQuery blogQuery);
 
     /**
+     * description: 根据标签分页查询所有博客
+     *
+     * @param pageable 分页参数
+     * @param tagId    {@code tagId} 标签的主键
+     * @return {@code Page<Blog>} 根据条件查询出的包装了分页信息的结果集
+     * @author xiaosaguo
+     * @date 2020/05/02 10:18
+     */
+    Page<Blog> list(Long tagId, Pageable pageable);
+
+    /**
      * description: 根据条件分页查询
      *
      * @param pageable 分页参数
@@ -87,7 +98,6 @@ public interface BlogService {
      * @date 2020/05/16 01:01
      */
     List<Blog> listTop(int size, Sort sort);
-
 
     /**
      * description: 根据关键字对博客标题和内容进行匹配
