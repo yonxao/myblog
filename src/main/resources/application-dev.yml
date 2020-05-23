@@ -16,5 +16,5 @@ logging:
   level:
     root: info
     net.xiaosaguo.blog: debug
-  file: back-end/log/blog-dev.log
+  file: log/blog-dev.log
 

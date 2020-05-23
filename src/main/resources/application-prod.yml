@@ -13,7 +13,7 @@ logging:
   level:
     root: warn
     net.xiaosaguo.blog: info
-  file: back-end/log/blog-prod.log
+  file: log/blog-prod.log
 
 server:
   port: 8081
