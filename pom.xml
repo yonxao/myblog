@@ -11,125 +11,125 @@
     </parent>
 
     <groupId>net.xiaosaguo</groupId>
-    <artifactId>blog</artifactId>
+    <artifactId>myblog</artifactId>
     <version>1.0</version>
-    <name>blog</name>
-    <description>blog for xiaosaguo.net</description>
+    <name>myblog</name>
+    <description>myblog is a blog application of xiaosaguo.net</description>
 
     <properties>
+        <!-- 依赖版本控制 -->
         <java.version>11</java.version>
         <commonmark.version>0.14.0</commonmark.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-
+        <!-- spring start -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+        <!--
+        spring 默认使用 yml 中的配置，但有时候要用传统的 xml 或 properties 配置，就需要使用 spring-boot-configuration-processor
+        在配置类开头加上@PropertySource("classpath:your.properties")，其余用法与加载yml的配置一样
+        详情：https://blog.csdn.net/yuhan_0590/article/details/85100246
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+            <!--
+            当其他模块依赖本模块时，如果不写 optional 会进行依赖传递，可以节省开销、减少依赖冲突
+                1. 当 optional 设置为 true 时，此依赖项不会传递到其他模块
+                2. 当 optional 设置为 false 时，此依赖项会传递到其他模块
+             -->
             <optional>true</optional>
         </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-mockmvc</artifactId>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!--
+            scope : compile
+                默认值，表示在 build、test、runtime 阶段的 classpath 下都有依赖关系。
+            scope : test
+                表示只在 test 阶段有依赖关系，例如 junit
+            scope : provided
+                表示在 build、test 阶段都有依赖，在 runtime 时并不输出依赖关系而是由容器提供，
+                例如 web war 包都不包括 servlet-api.jar，而是由tomcat等容器来提供
+                开发时，需要用到 servlet-api 这个依赖，但当将应用部署到 web 容器中时，此依赖容器也会提供，
+                如果此时项目中再引用的话就会造成重复引用，会有版本不一致的风险。
+            scope : runtime
+                表示在构建编译阶段不需要，只在 test、runtime 阶段需要。
+                这种主要是指代码里并没有直接引用而是根据配置在运行时动态加载并实例化的情况。
+                虽然用 runtime 的地方改成 compile 也不会出大问题，但是 runtime 的好处是可以避免在程序里意外地直接引用到原本应该动态加载的包。
+                例如 JDBC 连接池。
+            总结 :
+                简单来说，compile、runtime 和 provided 的区别，需要在执行 mvn package 命令，且打包格式是war之类（而不是默认的jar）的时
+                候才能看出来。通过 compile 和 runtime 引入的 jar 包，会出现在你的项目 war 包里，而 provided 引入的 jar 包则不会。
+                通过 compile 和 provided 引入的jar包，里面的类，你在项目中可以直接 import 进来用，编译没问题，
+                但是 runtime 引入的 jar 包中的类，项目代码里不能直接用，用了无法通过编译，只能通过反射之类的方式来用。
+            -->
+            <scope>runtime</scope>
+            <optional>true</optional>
         </dependency>
+        <!-- spring end -->
 
+        <!-- utils start -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- utils end -->
+
+        <!-- database start -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!-- database end -->
 
-        <!--markdown文档转换为html文档-->
+        <!-- commonmark start -->
+        <!-- markdown 文档转换为 html 文档 -->
         <dependency>
             <groupId>com.atlassian.commonmark</groupId>
             <artifactId>commonmark</artifactId>
             <version>${commonmark.version}</version>
         </dependency>
-        <!--markdown文档转换为html文档，table拓展处理-->
+        <!-- markdown 文档转换为 html 文档扩展，table 自定义处理 -->
         <dependency>
             <groupId>com.atlassian.commonmark</groupId>
             <artifactId>commonmark-ext-gfm-tables</artifactId>
             <version>${commonmark.version}</version>
         </dependency>
-        <!--markdown文档转换为html文档，给 H 标签生成 id-->
+        <!-- markdown文 档转换为 html 文档扩展，给 H 标签生成 id -->
         <dependency>
             <groupId>com.atlassian.commonmark</groupId>
             <artifactId>commonmark-ext-heading-anchor</artifactId>
             <version>${commonmark.version}</version>
         </dependency>
+        <!-- commonmark end -->
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.asciidoctor</groupId>
-                <artifactId>asciidoctor-maven-plugin</artifactId>
-                <!--TODO 研究此插件作用，处理版本号-->
-                <version>1.5.8</version>
-                <executions>
-                    <execution>
-                        <id>generate-docs</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>process-asciidoc</goal>
-                        </goals>
-                        <configuration>
-                            <backend>html</backend>
-                            <doctype>book</doctype>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework.restdocs</groupId>
-                        <artifactId>spring-restdocs-asciidoctor</artifactId>
-                        <!--FIXME 升级Spring Boot版本，此处报错-->
-                        <version>${spring-restdocs.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
