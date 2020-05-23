@@ -15,6 +15,6 @@ spring:
 logging:
   level:
     root: info
-    net.xiaosaguo.blog: debug
+    net.xiaosaguo.myblog: debug
   file: log/blog-dev.log
 
