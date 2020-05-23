@@ -1,23 +1,23 @@
 package net.xiaosaguo.blog.configurer;
 
-import net.xiaosaguo.blog.interceptor.LoginInterceptor;
+import net.xiaosaguo.blog.interceptor.AdminLoginInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * description: 自定义web配置器
+ * description: 自定义 WebMvc 配置器
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/26
  */
 @Configuration
-public class WebConfigurer implements WebMvcConfigurer {
+public class CustomWebMvcConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor())
+        registry.addInterceptor(new AdminLoginInterceptor())
                 .addPathPatterns("/admin/**")
                 // 排除登录页及登录接口
                 .excludePathPatterns("/admin", "/admin/login");
@@ -25,6 +25,7 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
     }
 }

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 
 /**
- * description: 使用 aop 记录请求日志
+ * description: 使用 AOP 记录请求日志
  *
  * @author xiaosaguo
  * @date 2020/04/16

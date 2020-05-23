@@ -6,23 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * description: 登录拦截器
+ * description: 后台登录拦截器
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/26
  */
-public class LoginInterceptor extends HandlerInterceptorAdapter {
+public class AdminLoginInterceptor extends HandlerInterceptorAdapter {
 
     public static final String USER_ATTRIBUTE_NAME_IN_SESSION = "user";
+    public static final String ADMIN_LOGIN_VIEW = "/admin";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         if (request.getSession().getAttribute(USER_ATTRIBUTE_NAME_IN_SESSION) == null) {
-            response.sendRedirect("/admin");
+            response.sendRedirect(ADMIN_LOGIN_VIEW);
             return false;
         }
-
         return true;
     }
 }
