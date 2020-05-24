@@ -55,9 +55,9 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
     Page<Blog> likeTitleOrContent(String keyword, Pageable pageable);
 
     /**
-     * description: 给博客浏览次数 +1
+     * description: 根据博客 ID 给博客浏览次数 +1
      *
-     * @param id 博客id
+     * @param id {@code Blog} 的 ID
      * @author xiaosaguo
      * @date 2020/05/21 21:33
      */

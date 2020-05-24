@@ -21,7 +21,7 @@ public interface TagRepository extends JpaRepository<Tag, Long> {
      * description: 根据标签名称查询标签
      *
      * @param name 标签名称
-     * @return net.xiaosaguo.blog.po.Tag
+     * @return 根据标签名称查询到的 {@code Tag}
      * @author xiaosaguo
      * @date 2020-04-30 20:04
      */

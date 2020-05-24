@@ -17,9 +17,9 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     /**
-     * description: 根据博客 id 查询该博客的顶层评论
+     * description: 根据博客 ID 查询该博客的顶层评论
      *
-     * @param blogId 博客 id
+     * @param blogId {@code Blog} 的 ID
      * @param sort   排序参数
      * @return 该博客的所有评论
      * @author xiaosaguo

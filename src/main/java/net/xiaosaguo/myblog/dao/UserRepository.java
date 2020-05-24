@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
      *
      * @param username 用户名
      * @param password 密码
-     * @return net.xiaosaguo.blog.po.User
+     * @return 根据用户名和密码匹配到的 {@code User}
      * @author xiaosaguo
      * @date 2020-04-25 04:16
      */

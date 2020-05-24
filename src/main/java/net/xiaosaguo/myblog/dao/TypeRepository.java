@@ -21,7 +21,7 @@ public interface TypeRepository extends JpaRepository<Type, Long> {
      * description: 根据分类名称查找分类
      *
      * @param name 分类名称
-     * @return net.xiaosaguo.blog.po.Type
+     * @return 根据分类名称查找到的 {@code Type}
      * @author xiaosaguo
      * @date 2020-04-26 08:33
      */
@@ -31,7 +31,7 @@ public interface TypeRepository extends JpaRepository<Type, Long> {
      * description: 根据分类下的博客数量排名，返回前几名
      *
      * @param pageable 分页封装参数
-     * @return 前几名的 {@code Type}
+     * @return 根据分类下的博客数量排名查询到的前几名的 {@code Type}
      * @author xiaosaguo
      * @date 2020/05/15 23:24
      */
