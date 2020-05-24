@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * description: 评论 Repository
+ * description: 评论 DAO
  *
  * @author xiaosaguo
  * @date 2020/05/21

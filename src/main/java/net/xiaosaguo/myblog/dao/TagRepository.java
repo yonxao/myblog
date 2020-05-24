@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * description: 标签资源库
+ * description: 标签 DAO
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/25
  */
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Long> {

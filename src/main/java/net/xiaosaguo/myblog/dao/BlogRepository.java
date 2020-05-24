@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * description: 博客DAO
+ * description: 博客 DAO
  *
  * @author xiaosaguo
  * @date 2020/05/01
@@ -58,13 +58,12 @@ public interface BlogRepository extends JpaRepository<Blog, Long>, JpaSpecificat
      * description: 给博客浏览次数 +1
      *
      * @param id 博客id
-     * @return int 受影响的行数
      * @author xiaosaguo
      * @date 2020/05/21 21:33
      */
     @Modifying
     @Query("update Blog b set b.views = b.views+1 where b.id = ?1")
-    int updateViews(Long id);
+    void updateViews(Long id);
 
     /**
      * description: 根据博客的更新时间拿到所有的年份

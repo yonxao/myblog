@@ -9,9 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * description: 分类Repository
+ * description: 分类 DAO
  *
  * @author xiaosaguo
+ * @date 2020/04/25
  */
 @Repository
 public interface TypeRepository extends JpaRepository<Type, Long> {

@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * description: 用户DAO
+ * description: 用户 DAO
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/25
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -21,7 +21,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return net.xiaosaguo.blog.po.User
      * @author xiaosaguo
      * @date 2020-04-25 04:16
-     * @version 1 xiaosaguo 创建
      */
     User findByUsernameAndPassword(String username, String password);
 }
