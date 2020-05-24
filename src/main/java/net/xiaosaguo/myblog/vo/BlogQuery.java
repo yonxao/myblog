@@ -1,6 +1,7 @@
 package net.xiaosaguo.myblog.vo;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
  * @date 2020/05/12
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlogQuery {

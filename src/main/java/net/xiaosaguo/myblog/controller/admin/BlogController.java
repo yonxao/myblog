@@ -1,7 +1,6 @@
-package net.xiaosaguo.myblog.web.admin;
+package net.xiaosaguo.myblog.controller.admin;
 
 import net.xiaosaguo.myblog.po.Blog;
-import net.xiaosaguo.myblog.po.Tag;
 import net.xiaosaguo.myblog.po.User;
 import net.xiaosaguo.myblog.service.BlogService;
 import net.xiaosaguo.myblog.service.TagService;
@@ -20,30 +19,28 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 /**
- * description: 博客操作控制器
+ * description: 博客 Controller
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/26
  */
 @Controller
 @RequestMapping("/admin/blog")
 public class BlogController {
 
-    private static final String INPUT = "admin/blog-input";
-    private static final String LIST = "admin/blog";
-    private static final String REDIRECT_LIST = "redirect:/admin/blog";
-
     @Resource
     private BlogService blogService;
-
     @Resource
     private TypeService typeService;
-
     @Resource
     private TagService tagService;
+
+    private static final String LIST_VIEW = "admin/blog";
+    private static final String REDIRECT_LIST_VIEW = "redirect:/admin/blog";
+    private static final String INPUT_VIEW = "admin/blog-input";
+    private static final String FRAGMENT_BLOG_BLOG_LIST_VIEW = "/admin/blog::blogList";
 
     @GetMapping
     public String list(@PageableDefault(sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
@@ -51,7 +48,7 @@ public class BlogController {
                        Model model) {
         model.addAttribute("page", blogService.list(pageable, blogQuery));
         model.addAttribute("typeList", typeService.list());
-        return LIST;
+        return LIST_VIEW;
     }
 
     @PostMapping("/search")
@@ -59,14 +56,14 @@ public class BlogController {
                          BlogQuery blogQuery,
                          Model model) {
         model.addAttribute("page", blogService.list(pageable, blogQuery));
-        return "/admin/blog :: blogList";
+        return FRAGMENT_BLOG_BLOG_LIST_VIEW;
     }
 
     @GetMapping("/save")
     public String saveView(Model model) {
         model.addAttribute("blog", new Blog());
         initTypesAndTags(model);
-        return INPUT;
+        return INPUT_VIEW;
     }
 
     @PostMapping
@@ -74,19 +71,18 @@ public class BlogController {
                        HttpSession session,
                        Model model,
                        RedirectAttributes attributes) {
-        // 参数校验 如果可以自定义标签，得到的参数： 3,xuexi
+        // 如果可以自定义标签，得到的参数示例： 3,study
+        // 参数校验
         if (bindingResult.hasErrors()) {
             model.addAttribute("blog", blog);
             initTypesAndTags(model);
-            return INPUT;
+            return INPUT_VIEW;
         }
         // 处理博客创建人
         blog.setUser((User) session.getAttribute("user"));
         // 处理博客分类
         blog.setType(typeService.get(blog.getType().getId()));
         // 处理博客标签
-        String ids = blog.getTagIds();
-        List<Tag> tags = tagService.listByIds(ids);
         blog.setTags(tagService.listByIds(blog.getTagIds()));
         // 判断新增和修改处理处理方法
         if (ObjectUtils.isEmpty(blog.getId())) {
@@ -95,14 +91,14 @@ public class BlogController {
             blogService.update(blog.getId(), blog);
         }
         attributes.addFlashAttribute("message", "操作成功");
-        return REDIRECT_LIST;
+        return REDIRECT_LIST_VIEW;
     }
 
     @GetMapping("/update/{id}")
     public String updateVies(@PathVariable Long id, Model model) {
         model.addAttribute("blog", blogService.get(id));
         initTypesAndTags(model);
-        return INPUT;
+        return INPUT_VIEW;
     }
 
 
@@ -111,7 +107,7 @@ public class BlogController {
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
         blogService.delete(id);
         attributes.addFlashAttribute("message", "删除成功");
-        return REDIRECT_LIST;
+        return REDIRECT_LIST_VIEW;
     }
 
     /**
@@ -126,6 +122,4 @@ public class BlogController {
         model.addAttribute("typeList", typeService.list());
         model.addAttribute("tagList", tagService.list());
     }
-
-
 }

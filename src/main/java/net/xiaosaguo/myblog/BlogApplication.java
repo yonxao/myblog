@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * description: 博客启动器
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2019/12/30
  */
 @SpringBootApplication
 public class BlogApplication {

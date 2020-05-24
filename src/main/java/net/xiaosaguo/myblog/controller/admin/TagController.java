@@ -1,4 +1,4 @@
-package net.xiaosaguo.myblog.web.admin;
+package net.xiaosaguo.myblog.controller.admin;
 
 import net.xiaosaguo.myblog.po.Tag;
 import net.xiaosaguo.myblog.service.TagService;
@@ -15,10 +15,10 @@ import javax.annotation.Resource;
 import javax.validation.Valid;
 
 /**
- * description: Tag标签web控制器
+ * description: Tag Controller
  *
  * @author xiaosaguo
- * @date 2020-04-30 15:39
+ * @date 2020/04/30
  */
 @Controller
 @RequestMapping("/admin/tag")
@@ -27,63 +27,62 @@ public class TagController {
     @Resource
     private TagService tagService;
 
+    private static final String LIST_VIEW = "admin/tag";
+    private static final String REDIRECT_LIST_VIEW = "redirect:/admin/tag";
+    private static final String INPUT_VIEW = "admin/tag-input";
+
     @GetMapping
     public String list(@PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Model model) {
         model.addAttribute("page", tagService.list(pageable));
-        return "admin/tag";
+        return LIST_VIEW;
     }
 
     @GetMapping("/save")
     public String saveView(Model model) {
         model.addAttribute("tag", new Tag());
-        return "admin/tag-input";
+        return INPUT_VIEW;
     }
 
     @PostMapping
     public String save(@Valid Tag tag, BindingResult bindingResult, RedirectAttributes attributes) {
-
         if (bindingResult.hasErrors()) {
-            return "admin/tag-input";
+            return INPUT_VIEW;
         }
-
+        // 名称重复校验
         Tag byName = tagService.getByName(tag.getName());
         if (byName != null) {
-            bindingResult.rejectValue("name", "nameError", "已存在此标签");
-            return "admin/tag-input";
+            bindingResult.rejectValue("name", "nameError", "该名称已存在");
+            return INPUT_VIEW;
         }
-
+        // 保存
         tagService.save(tag);
-        // TODO 此处没考虑会新增失败的情况
         attributes.addFlashAttribute("message", "新增成功");
-        return "redirect:/admin/tag";
+        return REDIRECT_LIST_VIEW;
     }
 
     @GetMapping("/update/{id}")
     public String updateView(@PathVariable Long id, Model model) {
         model.addAttribute("tag", tagService.get(id));
-        return "admin/tag-input";
+        return INPUT_VIEW;
     }
 
     @PutMapping("/{id}")
-    public String update(@Valid Tag tag,
-                         BindingResult bindingResult,
+    public String update(@Valid Tag tag, BindingResult bindingResult,
                          @PathVariable Long id,
                          RedirectAttributes attributes) {
         if (bindingResult.hasErrors()) {
-            return "admin/tag-input";
+            return INPUT_VIEW;
         }
-
         // 名称重复校验
         Tag byName = tagService.getByName(tag.getName());
         if (byName != null) {
             bindingResult.rejectValue("name", "nameError", "该名称已存在");
-            return "admin/tag-input";
+            return INPUT_VIEW;
         }
-
         // 更新
         tagService.update(id, tag);
         attributes.addFlashAttribute("message", "更新成功");
-        return "redirect:/admin/tag";
+        return REDIRECT_LIST_VIEW;
     }
 
     @GetMapping("/delete/{id}")
@@ -91,7 +90,6 @@ public class TagController {
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
         tagService.delete(id);
         attributes.addFlashAttribute("message", "删除成功");
-        return "redirect:/admin/tag";
+        return REDIRECT_LIST_VIEW;
     }
-
 }
