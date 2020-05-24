@@ -26,10 +26,12 @@ import java.util.Set;
 public class MarkdownUtils {
 
     /**
-     * Markdown 格式转换成 HTML格式
+     * description: Markdown 格式的文本转换成 HTML 格式
      *
-     * @param markdown Markdown 格式的文档
-     * @return HTML格式的文档
+     * @param markdown Markdown 格式的文本
+     * @return HTML 格式的文本
+     * @author xiaosaguo
+     * @date 2020/05/24 13:13
      */
     public static String markdownToHtml(String markdown) {
         Parser parser = Parser.builder().build();
@@ -39,11 +41,12 @@ public class MarkdownUtils {
     }
 
     /**
-     * 增加扩展 [标题锚点，表格生成]
-     * Markdown 转换成 HTML
+     * description: Markdown 转 HTML，增加扩展 [标题锚点、表格生成]
      *
-     * @param markdown Markdown 格式的文档
-     * @return HTML格式的文档
+     * @param markdown Markdown 格式的文本
+     * @return HTML格式的文本
+     * @author xiaosaguo
+     * @date 2020/05/24 13:14
      */
     public static String markdownToHtmlExtensions(String markdown) {
         // h 标题生成 id
@@ -68,12 +71,15 @@ public class MarkdownUtils {
 
 
     /**
-     * 处理标签的属性
+     * description: 处理标签的属性
+     *
+     * @author xiaosaguo
+     * @date 2020/05/24 13:16
      */
     static class CustomAttributeProvider implements AttributeProvider {
         @Override
         public void setAttributes(Node node, String tagName, Map<String, String> attributes) {
-            // 改变 a 标签的 target 属性为 _blank
+            // 改变 a 标签的 target 属性设置为 _blank
             if (node instanceof Link) {
                 attributes.put("target", "_blank");
             }
@@ -87,10 +93,9 @@ public class MarkdownUtils {
     public static void main(String[] args) {
         String table = "| hello | hi | 哈哈哈 |\n" +
                 "| ----- | ---- | ----- |\n" +
-                "| 斯维尔多 | 士大夫 | f啊 |\n" +
-                "| 阿什顿发 | 非固定杆 | 撒阿什顿发 |\n" +
-                "\n";
-        String a = "[imCoding 爱编程](http://www.lirenmi.cn)";
+                "| 斯维 | 士大夫 | 顿 |\n" +
+                "| 阿什顿 | 固定杆 | 阿什 |\n";
+        String a = "[百度一下](https://www.baidu.com)";
         System.out.println(markdownToHtmlExtensions(a));
         System.out.println(markdownToHtmlExtensions(table));
     }

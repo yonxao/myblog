@@ -7,12 +7,11 @@ import java.security.NoSuchAlgorithmException;
  * description: MD5加密工具类
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/25
  */
 public class MD5Utils {
 
     public static String code(String str) {
-
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(str.getBytes());
@@ -39,7 +38,4 @@ public class MD5Utils {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(code("111111"));
-    }
 }

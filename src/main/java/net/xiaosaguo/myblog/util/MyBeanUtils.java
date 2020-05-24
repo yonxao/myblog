@@ -17,7 +17,7 @@ import java.util.Objects;
 public class MyBeanUtils {
 
     /**
-     * description: 将对象中值为 null 的字段的名称以 string[] 返回
+     * description: 获取对象实例中值为 null 的字段的名称，放入 string[] 中返回
      *
      * @param o 要判断的实例
      * @return property 值为 null 的 propertyName 数组
