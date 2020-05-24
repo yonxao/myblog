@@ -1,11 +1,11 @@
 package net.xiaosaguo.myblog.controller;
 
-import net.xiaosaguo.myblog.po.Tag;
-import net.xiaosaguo.myblog.po.Type;
+import net.xiaosaguo.myblog.pojo.entity.Tag;
+import net.xiaosaguo.myblog.pojo.entity.Type;
+import net.xiaosaguo.myblog.pojo.query.BlogListSearchQuery;
 import net.xiaosaguo.myblog.service.BlogService;
 import net.xiaosaguo.myblog.service.TagService;
 import net.xiaosaguo.myblog.service.TypeService;
-import net.xiaosaguo.myblog.vo.BlogQuery;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -80,8 +80,8 @@ public class IndexController {
         }
         model.addAttribute("types", typeList);
         model.addAttribute("activeTypeId", id);
-        BlogQuery blogQuery = BlogQuery.builder().typeId(id).build();
-        model.addAttribute("page", blogService.list(pageable, blogQuery));
+        BlogListSearchQuery blogListSearchQuery = BlogListSearchQuery.builder().typeId(id).build();
+        model.addAttribute("page", blogService.list(pageable, blogListSearchQuery));
         return TYPES_VIEW;
     }
 

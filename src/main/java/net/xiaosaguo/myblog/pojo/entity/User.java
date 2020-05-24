@@ -1,4 +1,4 @@
-package net.xiaosaguo.myblog.po;
+package net.xiaosaguo.myblog.pojo.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,20 +8,23 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * description: 用户Entity
+ * description: 用户 Entity
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/24
  */
 @Data
 @Entity
 @Table(name = "t_user")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,6 +60,6 @@ public class User {
     private Date updateTime;
 
     @OneToMany(mappedBy = "user")
-    private List<Blog> blogs = new ArrayList<>();
+    transient private List<Blog> blogs = new ArrayList<>();
 
 }

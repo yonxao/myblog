@@ -1,6 +1,6 @@
 package net.xiaosaguo.myblog.dao;
 
-import net.xiaosaguo.myblog.po.Comment;
+import net.xiaosaguo.myblog.pojo.entity.Comment;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

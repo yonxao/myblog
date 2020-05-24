@@ -1,11 +1,11 @@
 package net.xiaosaguo.myblog.controller.admin;
 
-import net.xiaosaguo.myblog.po.Blog;
-import net.xiaosaguo.myblog.po.User;
+import net.xiaosaguo.myblog.pojo.entity.Blog;
+import net.xiaosaguo.myblog.pojo.entity.User;
+import net.xiaosaguo.myblog.pojo.query.BlogListSearchQuery;
 import net.xiaosaguo.myblog.service.BlogService;
 import net.xiaosaguo.myblog.service.TagService;
 import net.xiaosaguo.myblog.service.TypeService;
-import net.xiaosaguo.myblog.vo.BlogQuery;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -44,18 +44,18 @@ public class BlogController {
 
     @GetMapping
     public String list(@PageableDefault(sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                       BlogQuery blogQuery,
+                       BlogListSearchQuery blogListSearchQuery,
                        Model model) {
-        model.addAttribute("page", blogService.list(pageable, blogQuery));
+        model.addAttribute("page", blogService.list(pageable, blogListSearchQuery));
         model.addAttribute("typeList", typeService.list());
         return LIST_VIEW;
     }
 
     @PostMapping("/search")
     public String search(@PageableDefault(sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
-                         BlogQuery blogQuery,
+                         BlogListSearchQuery blogListSearchQuery,
                          Model model) {
-        model.addAttribute("page", blogService.list(pageable, blogQuery));
+        model.addAttribute("page", blogService.list(pageable, blogListSearchQuery));
         return FRAGMENT_BLOG_BLOG_LIST_VIEW;
     }
 

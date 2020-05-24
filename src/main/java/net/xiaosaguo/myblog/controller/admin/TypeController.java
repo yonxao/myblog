@@ -1,6 +1,6 @@
 package net.xiaosaguo.myblog.controller.admin;
 
-import net.xiaosaguo.myblog.po.Type;
+import net.xiaosaguo.myblog.pojo.entity.Type;
 import net.xiaosaguo.myblog.service.TypeService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

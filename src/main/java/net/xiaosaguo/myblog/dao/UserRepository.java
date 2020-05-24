@@ -1,6 +1,6 @@
 package net.xiaosaguo.myblog.dao;
 
-import net.xiaosaguo.myblog.po.User;
+import net.xiaosaguo.myblog.pojo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

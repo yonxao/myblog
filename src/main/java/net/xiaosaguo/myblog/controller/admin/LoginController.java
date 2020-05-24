@@ -1,6 +1,6 @@
 package net.xiaosaguo.myblog.controller.admin;
 
-import net.xiaosaguo.myblog.po.User;
+import net.xiaosaguo.myblog.pojo.entity.User;
 import net.xiaosaguo.myblog.service.UserService;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;

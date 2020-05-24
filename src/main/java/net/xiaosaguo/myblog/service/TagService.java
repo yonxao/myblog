@@ -1,6 +1,6 @@
 package net.xiaosaguo.myblog.service;
 
-import net.xiaosaguo.myblog.po.Tag;
+import net.xiaosaguo.myblog.pojo.entity.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

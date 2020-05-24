@@ -1,6 +1,6 @@
 package net.xiaosaguo.myblog.service;
 
-import net.xiaosaguo.myblog.po.User;
+import net.xiaosaguo.myblog.pojo.entity.User;
 
 /**
  * description: 用户相关的服务层接口

@@ -1,8 +1,8 @@
 package net.xiaosaguo.myblog.controller;
 
-import net.xiaosaguo.myblog.po.Blog;
-import net.xiaosaguo.myblog.po.Comment;
-import net.xiaosaguo.myblog.po.User;
+import net.xiaosaguo.myblog.pojo.entity.Blog;
+import net.xiaosaguo.myblog.pojo.entity.Comment;
+import net.xiaosaguo.myblog.pojo.entity.User;
 import net.xiaosaguo.myblog.service.BlogService;
 import net.xiaosaguo.myblog.service.CommentService;
 import org.springframework.beans.factory.annotation.Value;

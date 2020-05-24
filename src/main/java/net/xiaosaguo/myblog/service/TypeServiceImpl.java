@@ -2,7 +2,7 @@ package net.xiaosaguo.myblog.service;
 
 import net.xiaosaguo.myblog.dao.TypeRepository;
 import net.xiaosaguo.myblog.exception.NotFoundException;
-import net.xiaosaguo.myblog.po.Type;
+import net.xiaosaguo.myblog.pojo.entity.Type;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

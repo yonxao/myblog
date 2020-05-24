@@ -1,4 +1,4 @@
-package net.xiaosaguo.myblog.vo;
+package net.xiaosaguo.myblog.pojo.query;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BlogQuery {
+public class BlogListSearchQuery {
     private String title;
     private Long typeId;
     private boolean recommend;

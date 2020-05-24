@@ -2,7 +2,7 @@ package net.xiaosaguo.myblog.service;
 
 import net.xiaosaguo.myblog.dao.CommentRepository;
 import net.xiaosaguo.myblog.exception.NotFoundException;
-import net.xiaosaguo.myblog.po.Comment;
+import net.xiaosaguo.myblog.pojo.entity.Comment;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package net.xiaosaguo.myblog.service;
 
 import net.xiaosaguo.myblog.dao.UserRepository;
-import net.xiaosaguo.myblog.po.User;
+import net.xiaosaguo.myblog.pojo.entity.User;
 import net.xiaosaguo.myblog.util.MD5Utils;
 import org.springframework.stereotype.Service;
 

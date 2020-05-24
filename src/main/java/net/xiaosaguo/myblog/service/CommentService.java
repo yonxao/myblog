@@ -1,6 +1,6 @@
 package net.xiaosaguo.myblog.service;
 
-import net.xiaosaguo.myblog.po.Comment;
+import net.xiaosaguo.myblog.pojo.entity.Comment;
 
 import java.util.List;
 

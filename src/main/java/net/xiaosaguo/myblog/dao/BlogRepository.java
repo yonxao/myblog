@@ -1,6 +1,6 @@
 package net.xiaosaguo.myblog.dao;
 
-import net.xiaosaguo.myblog.po.Blog;
+import net.xiaosaguo.myblog.pojo.entity.Blog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

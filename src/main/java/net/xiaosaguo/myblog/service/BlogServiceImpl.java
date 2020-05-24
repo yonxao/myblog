@@ -2,10 +2,10 @@ package net.xiaosaguo.myblog.service;
 
 import net.xiaosaguo.myblog.dao.BlogRepository;
 import net.xiaosaguo.myblog.exception.NotFoundException;
-import net.xiaosaguo.myblog.po.Blog;
+import net.xiaosaguo.myblog.pojo.entity.Blog;
+import net.xiaosaguo.myblog.pojo.query.BlogListSearchQuery;
 import net.xiaosaguo.myblog.util.MarkdownUtils;
 import net.xiaosaguo.myblog.util.MyBeanUtils;
-import net.xiaosaguo.myblog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -63,18 +63,18 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Page<Blog> list(Pageable pageable, BlogQuery blogQuery) {
+    public Page<Blog> list(Pageable pageable, BlogListSearchQuery blogListSearchQuery) {
         return blogRepository.findAll((Specification<Blog>) (root, query, criteriaBuilder) -> {
             // TODO 学习 lambda 表达式用法，学习匿名内部类，学习数组操作
             List<Predicate> predicates = new ArrayList<>();
-            if (!StringUtils.isEmpty(blogQuery.getTitle())) {
-                predicates.add(criteriaBuilder.like(root.get("title"), "%" + blogQuery.getTitle() + "%"));
+            if (!StringUtils.isEmpty(blogListSearchQuery.getTitle())) {
+                predicates.add(criteriaBuilder.like(root.get("title"), "%" + blogListSearchQuery.getTitle() + "%"));
             }
-            if (!StringUtils.isEmpty(blogQuery.getTypeId())) {
-                predicates.add(criteriaBuilder.equal(root.get("type").get("id"), blogQuery.getTypeId()));
+            if (!StringUtils.isEmpty(blogListSearchQuery.getTypeId())) {
+                predicates.add(criteriaBuilder.equal(root.get("type").get("id"), blogListSearchQuery.getTypeId()));
             }
-            if (blogQuery.isRecommend()) {
-                predicates.add(criteriaBuilder.equal(root.get("recommend"), blogQuery.isRecommend()));
+            if (blogListSearchQuery.isRecommend()) {
+                predicates.add(criteriaBuilder.equal(root.get("recommend"), blogListSearchQuery.isRecommend()));
             }
             query.where(predicates.toArray(new Predicate[0]));
             return null;

@@ -1,4 +1,4 @@
-package net.xiaosaguo.myblog.po;
+package net.xiaosaguo.myblog.pojo.entity;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,10 +16,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * description: 博客Entity
+ * description: 博客 Entity
  *
  * @author xiaosaguo
- * @date 2020/5/1
+ * @date 2020/04/24
  */
 @Data
 @Entity

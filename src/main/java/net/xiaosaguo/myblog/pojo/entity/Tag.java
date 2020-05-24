@@ -1,4 +1,4 @@
-package net.xiaosaguo.myblog.po;
+package net.xiaosaguo.myblog.pojo.entity;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * description: 标签Entity
+ * description: 标签 Entity
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/24
  */
 @Data
 @Entity
