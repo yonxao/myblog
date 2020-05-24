@@ -6,7 +6,7 @@ spring:
   jackson:
     time-zone: GMT+8
   messages:
-    basename: i18n/messages
+    basename: i18n/response/response,i18n/view/view
 
 comment:
   avatar: /images/default-avatar.jpg
