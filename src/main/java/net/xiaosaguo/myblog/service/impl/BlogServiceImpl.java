@@ -1,9 +1,10 @@
-package net.xiaosaguo.myblog.service;
+package net.xiaosaguo.myblog.service.impl;
 
 import net.xiaosaguo.myblog.dao.BlogRepository;
 import net.xiaosaguo.myblog.exception.NotFoundException;
 import net.xiaosaguo.myblog.pojo.entity.Blog;
 import net.xiaosaguo.myblog.pojo.query.BlogListSearchQuery;
+import net.xiaosaguo.myblog.service.BlogService;
 import net.xiaosaguo.myblog.util.MarkdownUtils;
 import net.xiaosaguo.myblog.util.MyBeanUtils;
 import org.springframework.beans.BeanUtils;
@@ -25,7 +26,7 @@ import java.util.Map;
 
 
 /**
- * description: 博客ServiceImpl
+ * description: 博客 ServiceImpl
  *
  * @author xiaosaguo
  * @date 2020/05/02
@@ -46,13 +47,14 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Blog get(long id) {
-        return blogRepository.findById(id).orElse(null);
+        return blogRepository.findById(id).orElseThrow(() -> new NotFoundException("该博客不存在"));
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Blog getAndConvert(long id) {
-        Blog blog = blogRepository.findById(id).orElseThrow(() -> new NotFoundException("该博客不存在"));
+        Blog blog = get(id);
+        // 不能修改原对象，否则 hibernate sql session 会将改变持久化到数据库中
         Blog b = new Blog();
         BeanUtils.copyProperties(blog, b);
         String content = b.getContent();
@@ -63,18 +65,18 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Page<Blog> list(Pageable pageable, BlogListSearchQuery blogListSearchQuery) {
+    public Page<Blog> list(Pageable pageable, BlogListSearchQuery searchQuery) {
         return blogRepository.findAll((Specification<Blog>) (root, query, criteriaBuilder) -> {
             // TODO 学习 lambda 表达式用法，学习匿名内部类，学习数组操作
             List<Predicate> predicates = new ArrayList<>();
-            if (!StringUtils.isEmpty(blogListSearchQuery.getTitle())) {
-                predicates.add(criteriaBuilder.like(root.get("title"), "%" + blogListSearchQuery.getTitle() + "%"));
+            if (!StringUtils.isEmpty(searchQuery.getTitle())) {
+                predicates.add(criteriaBuilder.like(root.get("title"), "%" + searchQuery.getTitle() + "%"));
             }
-            if (!StringUtils.isEmpty(blogListSearchQuery.getTypeId())) {
-                predicates.add(criteriaBuilder.equal(root.get("type").get("id"), blogListSearchQuery.getTypeId()));
+            if (!StringUtils.isEmpty(searchQuery.getTypeId())) {
+                predicates.add(criteriaBuilder.equal(root.get("type").get("id"), searchQuery.getTypeId()));
             }
-            if (blogListSearchQuery.isRecommend()) {
-                predicates.add(criteriaBuilder.equal(root.get("recommend"), blogListSearchQuery.isRecommend()));
+            if (searchQuery.isRecommend()) {
+                predicates.add(criteriaBuilder.equal(root.get("recommend"), searchQuery.isRecommend()));
             }
             query.where(predicates.toArray(new Predicate[0]));
             return null;
@@ -83,7 +85,10 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public Page<Blog> list(Long tagId, Pageable pageable) {
-        return blogRepository.findAll(new Specification<Blog>() {
+        // 此处先不转换为 lambda 表达式，和上面的方法做个语法对比
+        return blogRepository.findAll(new Specification<>() {
+            private static final long serialVersionUID = 1L;
+
             @Override
             public Predicate toPredicate(Root<Blog> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 Join<Object, Object> join = root.join("tags");
@@ -119,9 +124,7 @@ public class BlogServiceImpl implements BlogService {
     public Map<String, List<Blog>> archivesBlog() {
         Map<String, List<Blog>> map = new LinkedHashMap<>();
         List<String> yearList = blogRepository.findYearList();
-        yearList.forEach(year -> {
-            map.put(year, blogRepository.findByYear(year));
-        });
+        yearList.forEach(year -> map.put(year, blogRepository.findByYear(year)));
         return map;
     }
 

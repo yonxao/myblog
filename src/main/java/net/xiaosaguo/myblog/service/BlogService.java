@@ -11,7 +11,7 @@ import java.util.Map;
 
 
 /**
- * description: 博客Service
+ * description: 博客 Service
  *
  * @author xiaosaguo
  * @date 2020/05/02
@@ -28,9 +28,9 @@ public interface BlogService {
     Blog save(Blog blog);
 
     /**
-     * description: 根据ID查询
+     * description: 根据 ID 查询
      *
-     * @param id {@code Blog} 的ID
+     * @param id {@code Blog} 的 ID
      * @return 根据 {@code id} 查询出的 {@code Blog}
      * @author xiaosaguo
      * @date 2020/05/02 09:41
@@ -38,10 +38,10 @@ public interface BlogService {
     Blog get(long id);
 
     /**
-     * description: 根据ID查询
+     * description: 根据 ID 查询，并将博客内容由 Markdown 转换为 HTML
      *
-     * @param id {@code Blog} 的ID
-     * @return 根据 {@code id} 查询出的 {@code Blog}
+     * @param id {@code Blog} 的 ID
+     * @return 根据 {@code id} 查询出的内容转换为 HTML 格式的 {@code Blog}
      * @author xiaosaguo
      * @date 2020/05/02 09:41
      */
@@ -50,13 +50,13 @@ public interface BlogService {
     /**
      * description: 根据条件分页查询
      *
-     * @param pageable  分页参数
-     * @param blogListSearchQuery {@code BlogQuery} 的查询条件
+     * @param pageable            分页参数
+     * @param searchQuery 博客列表上方的查询条件
      * @return {@code Page<Blog>} 根据条件查询出的包装了分页信息的结果集
      * @author xiaosaguo
      * @date 2020/05/02 10:18
      */
-    Page<Blog> list(Pageable pageable, BlogListSearchQuery blogListSearchQuery);
+    Page<Blog> list(Pageable pageable, BlogListSearchQuery searchQuery);
 
     /**
      * description: 根据标签分页查询所有博客
@@ -114,7 +114,7 @@ public interface BlogService {
     /**
      * description: 博客归档
      *
-     * @return 归档后的博客，Map key 为年份，value 为该年份博客集合
+     * @return 归档后的博客，Map-key 为年份，Map-value 为该年份博客集合
      * @author xiaosaguo
      * @date 2020/05/22 11:15
      */
@@ -130,9 +130,9 @@ public interface BlogService {
     Long countBlog();
 
     /**
-     * description: 根据ID更新
+     * description: 根据 ID 更新
      *
-     * @param id   {@code Blog} 的ID
+     * @param id   {@code Blog} 的 ID
      * @param blog 要更新的 {@code Blog}
      * @return 更新成功后返回的 {@code Blog}
      * @author xiaosaguo
@@ -141,9 +141,9 @@ public interface BlogService {
     Blog update(long id, Blog blog);
 
     /**
-     * description: 根据ID删除
+     * description: 根据 ID 删除
      *
-     * @param id {@code Blog} 的ID
+     * @param id {@code Blog} 的 ID
      * @author xiaosaguo
      * @date 2020/05/04 03:02
      */

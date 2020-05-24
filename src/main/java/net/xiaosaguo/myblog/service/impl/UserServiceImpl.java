@@ -1,17 +1,18 @@
-package net.xiaosaguo.myblog.service;
+package net.xiaosaguo.myblog.service.impl;
 
 import net.xiaosaguo.myblog.dao.UserRepository;
 import net.xiaosaguo.myblog.pojo.entity.User;
+import net.xiaosaguo.myblog.service.UserService;
 import net.xiaosaguo.myblog.util.MD5Utils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
 /**
- * description: 用户相关的接口的实现类
+ * description: 用户 ServiceImpl
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/25
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User checkUser(String username, String password) {
+    public User getByUsernameAndPassword(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, MD5Utils.code(password));
     }
 }

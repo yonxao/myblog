@@ -3,10 +3,10 @@ package net.xiaosaguo.myblog.service;
 import net.xiaosaguo.myblog.pojo.entity.User;
 
 /**
- * description: 用户相关的服务层接口
+ * description: 用户 Service
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/25
  */
 public interface UserService {
 
@@ -15,12 +15,9 @@ public interface UserService {
      *
      * @param username 用户名
      * @param password 密码
-     * @return net.xiaosaguo.blog.po.User
+     * @return 根据用户名和密码匹配到的 {@code User}
      * @author xiaosaguo
      * @date 2020-04-25 03:22
-     * @version 1 xiaosaguo 创建
      */
-    User checkUser(String username, String password);
-
-
+    User getByUsernameAndPassword(String username, String password);
 }

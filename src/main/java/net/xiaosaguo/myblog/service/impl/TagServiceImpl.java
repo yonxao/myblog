@@ -1,8 +1,9 @@
-package net.xiaosaguo.myblog.service;
+package net.xiaosaguo.myblog.service.impl;
 
 import net.xiaosaguo.myblog.dao.TagRepository;
 import net.xiaosaguo.myblog.exception.NotFoundException;
 import net.xiaosaguo.myblog.pojo.entity.Tag;
+import net.xiaosaguo.myblog.service.TagService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * description: 标签的相关接口实现
+ * description: 标签 ServiceImpl
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/28
  */
 @Service
 public class TagServiceImpl implements TagService {
@@ -33,6 +34,16 @@ public class TagServiceImpl implements TagService {
     public Tag save(Tag tag) {
         tag.setId(null);
         return repository.save(tag);
+    }
+
+    @Override
+    public Tag get(Long id) {
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("该标签不存在"));
+    }
+
+    @Override
+    public Tag getByName(String name) {
+        return repository.findByName(name);
     }
 
     @Override
@@ -60,20 +71,10 @@ public class TagServiceImpl implements TagService {
         return repository.findTop(pageable);
     }
 
-    @Override
-    public Tag get(Long id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    @Override
-    public Tag getByName(String name) {
-        return repository.findByName(name);
-    }
-
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Tag update(Long id, Tag tag) {
-        Tag t = repository.findById(id).orElseThrow(() -> new NotFoundException("不存在该记录：id = " + id));
+        Tag t = get(id);
         BeanUtils.copyProperties(tag, t);
         t.setId(id);
         return repository.save(t);

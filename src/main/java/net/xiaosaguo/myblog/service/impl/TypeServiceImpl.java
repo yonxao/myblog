@@ -1,8 +1,9 @@
-package net.xiaosaguo.myblog.service;
+package net.xiaosaguo.myblog.service.impl;
 
 import net.xiaosaguo.myblog.dao.TypeRepository;
 import net.xiaosaguo.myblog.exception.NotFoundException;
 import net.xiaosaguo.myblog.pojo.entity.Type;
+import net.xiaosaguo.myblog.service.TypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,10 +17,10 @@ import java.util.List;
 
 
 /**
- * description: 分类的相关接口的实现
+ * description: 分类 ServiceImpl
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/26
  */
 @Service
 public class TypeServiceImpl implements TypeService {
@@ -35,7 +36,12 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public Type get(Long id) {
-        return typeRepository.findById(id).orElse(null);
+        return typeRepository.findById(id).orElseThrow(() -> new NotFoundException("该分类不存在"));
+    }
+
+    @Override
+    public Type getByName(String name) {
+        return typeRepository.findByName(name);
     }
 
     @Override
@@ -58,12 +64,12 @@ public class TypeServiceImpl implements TypeService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Type update(Long id, Type type) {
-        Type t = typeRepository.findById(id).orElseThrow(() -> new NotFoundException("该记录不存在, id = :" + id));
+        Type t = get(id);
         BeanUtils.copyProperties(type, t);
         t.setId(id);
         /*
          * TODO: 一个比较有意思的点
-         * 这里的t如果id为null，就好报异常，而直接调用新增则没问题，
+         * 这里的 t 如果 id 为 null，就会报异常，而直接调用新增则没问题，
          * 猜想：和请求方式有关，put请求不允许新增资源，只能修改资源
          */
         return typeRepository.save(t);
@@ -73,10 +79,5 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public void delete(Long id) {
         typeRepository.deleteById(id);
-    }
-
-    @Override
-    public Type getByName(String name) {
-        return typeRepository.findByName(name);
     }
 }
