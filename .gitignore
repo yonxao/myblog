@@ -1,12 +1,15 @@
-HELP.md
-target/
+### custom ###
 .mvn
 mvnw
 mvnw.cmd
+log/
+
+### start.spring.io ###
+HELP.md
+target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-log/
 
 ### STS ###
 .apt_generated
@@ -22,7 +25,6 @@ log/
 *.iws
 *.iml
 *.ipr
-.idea/
 
 ### NetBeans ###
 /nbproject/private/
