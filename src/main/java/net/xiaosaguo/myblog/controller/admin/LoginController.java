@@ -5,6 +5,7 @@ import net.xiaosaguo.myblog.service.UserService;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ public class LoginController {
 
     public static final String ADMIN_LOGIN_VIEW = "admin/login";
     public static final String REDIRECT_ADMIN_LOGIN_VIEW = "redirect:/admin";
-    public static final String ADMIN_INDEX_VIEW = "admin/index";
+    public static final String ADMIN_INDEX_VIEW = "redirect:/admin/index";
 
     @GetMapping
     public String loginView() {
@@ -54,6 +55,12 @@ public class LoginController {
                     messageSource.getMessage("login.error", null, LocaleContextHolder.getLocale()));
             return REDIRECT_ADMIN_LOGIN_VIEW;
         }
+    }
+
+    @GetMapping("/index")
+    public String index(Model model) {
+        model.addAttribute("img", "/images/login" + System.currentTimeMillis() % 2 + ".jpg");
+        return "admin/index";
     }
 
     @GetMapping("/logout")

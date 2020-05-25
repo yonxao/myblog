@@ -2,69 +2,59 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="admin/_fragments :: head(~{::title})">
+<head th:replace="_fragments::head(~{::title})">
     <meta charset="UTF-8">
-    <!--设置移动端访问缩放效果-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-    <!--引入semantic-ui框架-->
     <link rel="stylesheet" href="../../static/css/semantic.min.css">
-
     <link rel="stylesheet" href="../../static/css/me.css">
+
     <title>登录</title>
 </head>
 
 <body>
-<br>
-<br>
-<br>
+<br><br><br>
+
 <div class="m-container-small m-padded-tb-massive" style="max-width:30em !important;">
     <div class="ui container">
         <div class="ui middle aligned center aligned grid">
             <div class="column">
                 <h2 class="ui teal image header">
-                    <span class="content">
-                        管理后台登录
-                    </span>
+                    <span class="content">管理后台登录</span>
                 </h2>
                 <form class="ui large form" method="post" action="#" th:action="@{/admin/login}">
                     <div class="ui segment">
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="user icon"></i>
-                                <input id="username" type="text" name="username" placeholder="用户名">
-                                <label for="username"></label>
+                                <input type="text" name="username" placeholder="用户名">
                             </div>
                         </div>
                         <div class="field">
                             <div class="ui left icon input">
                                 <i class="lock icon"></i>
-                                <input id="password" type="password" name="password" placeholder="密码">
-                                <label for="password"></label>
+                                <input type="password" name="password" placeholder="密码">
                             </div>
                         </div>
                         <button class="ui fluid large teal submit button">登录</button>
                     </div>
-
+                    <!--前端错误提示-->
                     <div class="ui mini error message"></div>
-
+                    <!--后端错误提示-->
                     <!--/*@thymesVar id="message" type="java.lang.String"*/-->
-                    <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
-                        用户名或密码错误
+                    <!--/*/
+                    <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}">
+                        <i class="close icon"></i>
+                        <span th:text="${message}">用户名或密码错误</span>
                     </div>
-
+                    /*/-->
                 </form>
-
-
             </div>
         </div>
     </div>
 </div>
 
-<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
-<!--引入jquery-->
+<!--/*/<th:block th:replace="admin/_fragments::script">/*/-->
 <script src="../../static/js/jquery.min.js"></script>
-<!--引入semantic-ui js-->
 <script src="../../static/js/semantic.min.js"></script>
 <!--/*/</th:block>/*/-->
 
@@ -84,7 +74,6 @@
                     type: 'empty',
                     prompt: '请输入密码'
                 }]
-
             }
         }
     });

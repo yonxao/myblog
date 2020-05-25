@@ -3,27 +3,14 @@
 
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
-    <!--设置移动端访问缩放效果-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-    <title th:replace="${title}">我的博客</title>
-
     <!--引入editor.md的css-->
     <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css"
           th:href="@{/lib/editormd/css/editormd.min.css}">
-    <!--引入typo.css，markdown的样式-->
-    <link rel="stylesheet" href="../../static/css/typo.css" th:href="@{/css/typo.css}">
-    <!--引入动画css-->
-    <link rel="stylesheet" href="../../static/css/animate.css" th:href="@{/css/animate.css}">
-    <!--引入语法高亮样式-->
-    <link rel="stylesheet" href="../../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
-    <!--引入生成目录插件的样式文件-->
-    <link rel="stylesheet" href="../../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
-    <!--引入semantic-ui框架-->
     <link rel="stylesheet" href="../../static/css/semantic.min.css" th:href="@{/css/semantic.min.css}">
-
-    <!--自定义css-->
     <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+
+    <title th:replace="${title}">公共片段</title>
 </head>
 
 
@@ -34,17 +21,6 @@
     <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
     <!--引入semantic-ui js-->
     <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
-    <!--引入平滑滚动插件-->
-    <script src="../../static/js/jquery.scrollTo.min.js" th:src="@{/js/jquery.scrollTo.min.js}"></script>
-    <!--引入语法高亮样式-->
-    <script src="../../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
-    <!--引入生成目录插件tocbot-->
-    <script src="../../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
-    <!--引入二维码生成插件-->
-    <script src="../../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
-    <!--引入滚动侦测插件-->
-    <script src="../../static/lib/waypoints/jquery.waypoints.min.js"
-            th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
     <!--引入editormd js-->
     <script src="../../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
 
@@ -63,6 +39,19 @@
                 path: "/lib/editormd/lib/"
             });
         });
+        // 移动端点击菜单按钮，打开关闭菜单切换
+        $('.menu.toggle').on('click', function () {
+            // toggleClass : 开关事件 -> 开关样式
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+        // 下拉选项卡鼠标悬浮弹出
+        $('.ui.dropdown').dropdown({
+            on: 'hover'
+        });
+        // 提示信息关闭按钮
+        $('.message .close').on('click', function () {
+            $(this).closest('.message').transition('fade')
+        })
     </script>
 </th:block>
 

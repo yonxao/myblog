@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:fragment="head(title)">
+<head>
     <meta charset="UTF-8">
-    <!--设置移动端访问缩放效果-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
 
-    <!--引入semantic-ui框架-->
-    <link rel="stylesheet" href="../../static/css/semantic.min.css" th:href="@{/css/semantic.min.css}">
-    <!--自定义css-->
-    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
-
-    <title th:replace="${title}">我的博客</title>
+    <title>公共片段</title>
 </head>
 
 <body>
@@ -21,21 +17,20 @@
     <!--container:容器，包裹的元素会有响应式展现效果-->
     <div class="ui container">
         <!--menu:菜单（UI组件）-->
-        <!--secondary:一种UI样式-->
         <!--stackable:适应手机端响应样式，可堆叠的-->
         <div class="ui inverted secondary stackable menu">
-            <!--header:头样式-->
-            <!--item:项（UI组件）-->
             <h2 class="ui teal header item">管理后台</h2>
-            <!--i标签:显示斜体文本效果。-->
             <a href="#" th:href="@{/admin/blog}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
-                <i class="gem icon"></i>博客</a>
+                <i class="gem icon"></i>博客
+            </a>
             <a href="#" th:href="@{/admin/type}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
-                <i class="folder open icon"></i>分类</a>
+                <i class="folder open icon"></i>分类
+            </a>
             <a href="#" th:href="@{/admin/tag}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
                 <!-- TODO tag 样式被覆盖，icon绝对大小不一致 -->
-                <i class="tags icon"></i>标签</a>
-
+                <i class="tags icon"></i>标签
+            </a>
+            <!--头像昵称及个人信息下拉框-->
             <div class="right menu m-item m-mobile-hide">
                 <div class="ui dropdown item">
                     <div class="text">
@@ -51,62 +46,33 @@
             </div>
         </div>
     </div>
+    <!--移动端下才展示的展开菜单按钮-->
     <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
         <i class="sidebar icon"></i>
     </a>
 </nav>
 
 
-<!--底部footer-->
-<!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
-<footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
-    <div class="ui center aligned container">
-        <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
-        <!--divided:显示分割线-->
-        <div class="ui inverted divided stackable grid">
-            <div class="three wide column">
-                <div class="ui inverted link list">
-                    <div class="item">
-                        <img src="../../static/images/wechat.png" class="ui rounded image" alt="微信二维码"
-                             th:src="@{/images/wechat.png}" style="width:110px">
-                    </div>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">最新博客</h4>
-                <!--list:列表（UI组件）-->
-                <div class="ui inverted link list">
-                    <a href="#" class="item">用户故事（user story）</a>
-                    <a href="#" class="item">刻意联系</a>
-                    <a href="#" class="item">semantic-ui快速入门</a>
-                </div>
-            </div>
-            <div class="five wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">联系我</h4>
-                <!--list:列表（UI组件）-->
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Email：guoyx@vip.qq.com</a>
-                    <a href="#" class="item">QQ：805372666</a>
-                </div>
-            </div>
-            <div class="five wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">博客</h4>
-                <p class="m-text-thin m-text-spaced m-opacity-mini">
-                    这是我的个人博客，会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
-            </div>
-        </div>
-        <!--divider:分割线-->
-        <!--section:分割-->
-        <div class="ui section divider"></div>
-        <p class="m-text-thin m-text-spaced m-opacity-tiny">版权所有：xiaosaguo.net</p>
-    </div>
-</footer>
-
 <th:block th:fragment="script">
     <!--引入jquery-->
     <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
     <!--引入semantic-ui js-->
     <script src="../../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
+    <script>
+        // 移动端点击菜单按钮，打开关闭菜单切换
+        $('.menu.toggle').on('click', function () {
+            // toggleClass : 开关事件 -> 开关样式
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+        // 下拉选项卡鼠标悬浮弹出
+        $('.ui.dropdown').dropdown({
+            on: 'hover'
+        });
+        // 提示信息关闭按钮
+        $('.message .close').on('click', function () {
+            $(this).closest('.message').transition('fade')
+        })
+    </script>
 </th:block>
 
 

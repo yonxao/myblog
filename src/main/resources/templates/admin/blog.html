@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="admin/_fragments :: head(~{::title})">
+<head th:replace="_fragments::head(~{::title})">
     <meta charset="UTF-8">
-    <!--设置移动端访问缩放效果-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-    <!--引入semantic-ui框架-->
     <link rel="stylesheet" href="../../static/css/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/me.css">
 
@@ -17,42 +14,7 @@
 <body>
 
 <!--导航-->
-<!--ui:表示使用semantic提供的UI组件-->
-<!--inverted:反转颜色-->
-<!--attached:附加，连接，将两个片段连到一起，圆角-->
-<!--segment:片段（UI组件）-->
-<nav th:replace="admin/_fragments :: menu(1)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
-    <!--container:容器，包裹的元素会有响应式展现效果-->
-    <div class="ui container">
-        <!--menu:菜单（UI组件）-->
-        <!--secondary:一种UI样式-->
-        <!--stackable:适应手机端响应样式，可堆叠的-->
-        <div class="ui inverted secondary stackable menu">
-            <!--header:头样式-->
-            <!--item:项（UI组件）-->
-            <h2 class="ui teal header item">管理后台</h2>
-            <!--i标签:显示斜体文本效果。-->
-            <a href="blog.html" class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
-            <a href="type.html" class="m-item item m-mobile-hide"><i class="th icon"></i>分类</a>
-            <a href="tag.html" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
-            <!--头像及个人选项卡-->
-            <div class="right menu m-item m-mobile-hide">
-                <div class="ui dropdown item">
-                    <div class="text">
-                        <img src="https://picsum.photos/id/1027/100/100" alt="" class="ui avatar image">郭永潇
-                    </div>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <a href="#" class="item">注销</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
-        <i class="sidebar icon"></i>
-    </a>
-</nav>
+<nav th:replace="admin/_fragments::menu(1)" class="ui inverted attached segment"></nav>
 
 
 <!--二级导航-->
@@ -71,19 +33,19 @@
     <div class="ui container">
         <!--搜索框表单-->
         <div class="ui secondary segment form">
-            <!--页码-->
+            <!--隐藏域:页码-->
             <input type="hidden" name="page">
-            <!--搜索框-->
+            <!--筛选栏-->
             <div class="inline fields">
                 <!--标题输入框-->
                 <div class="field">
-                    <input id="title" type="text" name="title" placeholder="标题">
-                    <label for="title"></label>
+                    <input type="text" name="title" placeholder="标题">
                 </div>
                 <!--分类下拉框-->
                 <div class="field">
                     <div class="ui labeled action input">
                         <div class="ui type-clear search selection dropdown">
+                            <!--隐藏域：分类 ID-->
                             <input type="hidden" name="typeId">
                             <div class="default text">分类</div>
                             <i class="dropdown icon"></i>
@@ -99,7 +61,6 @@
                                 <!--*/-->
                             </div>
                         </div>
-                        <!--<button id="clear-btn" class="ui compact button">清空</button>-->
                     </div>
                 </div>
                 <!--是否推荐选择框-->
@@ -119,17 +80,19 @@
         </div>
         <!--博客列表-->
         <div id="table-container">
-            <!--消息提示-->
+            <!--操作成功消息提示-->
+            <!--/*/
             <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
                 <i class="close icon"></i>
                 <div class="header">提示：</div>
                 <p th:text="${message}">恭喜，操作成功！</p>
             </div>
+            /*/-->
+            <!--博客列表-->
             <table class="ui compact teal table" th:fragment="blogList">
-                <!--博客列表表头-->
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>行号</th>
                     <th>标题</th>
                     <th>类型</th>
                     <th>推荐</th>
@@ -138,7 +101,6 @@
                     <th>操作</th>
                 </tr>
                 </thead>
-                <!--博客列表内容-->
                 <tbody>
                 <tr th:each="blog,iterStat : ${page.content}">
                     <td th:text="${iterStat.count}">1</td>
@@ -149,32 +111,35 @@
                     <td th:text="${blog.updateTime}">2017-10-02 09:45</td>
                     <td>
                         <a href="#" th:href="@{/admin/blog/update/{id}(id=${blog.id})}"
-                           class="ui mini teal basic button">编辑</a>
+                           class="ui mini teal basic button">
+                            编辑
+                        </a>
                         <a href="#" th:href="@{/admin/blog/delete/{id}(id=${blog.id})}"
-                           class="ui mini red basic button">删除</a>
+                           class="ui mini red basic button">
+                            删除
+                        </a>
                     </td>
                 </tr>
                 </tbody>
-                <!--博客列表表尾-->
                 <tfoot>
                 <tr>
                     <th colspan="7">
                         <!--翻页按钮-->
                         <div class="ui mini pagination menu" th:if="${page.totalPages}>1">
-                            <a class="item" onclick="page(this)"
-                               th:attr="data-page=${page.number}-1"
-                               th:unless="${page.first}">
+                            <a class="item" onclick="page(this)" th:unless="${page.first}"
+                               th:attr="data-page=${page.number}-1">
                                 上一页
                             </a>
-                            <a class="item" onclick="page(this)"
-                               th:attr="data-page=${page.number}+1"
-                               th:unless="${page.last}">
+                            <a class="item" onclick="page(this)" th:unless="${page.last}"
+                               th:attr="data-page=${page.number}+1">
                                 下一页
                             </a>
                         </div>
                         <!--新增按钮-->
                         <a th:href="@{/admin/blog/save}" href="blog-input.html"
-                           class="ui mini right floated teal basic button">新增</a>
+                           class="ui mini right floated teal basic button">
+                            新增
+                        </a>
                     </th>
                 </tr>
                 </tfoot>
@@ -183,69 +148,9 @@
     </div>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<!--底部footer-->
-<!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
-<footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
-    <div class="ui center aligned container">
-        <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
-        <!--divided:显示分割线-->
-        <div class="ui inverted divided stackable grid">
-            <div class="three wide column">
-                <div class="ui inverted link list">
-                    <div class="item">
-                        <img src="../../static/images/wechat.png" class="ui rounded image" alt="微信二维码"
-                             style="width:110px">
-                    </div>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">最新博客</h4>
-                <!--list:列表（UI组件）-->
-                <div class="ui inverted link list">
-                    <a href="#" class="item">用户故事（user story）</a>
-                    <a href="#" class="item">刻意联系</a>
-                    <a href="#" class="item">semantic-ui快速入门</a>
-                </div>
-            </div>
-            <div class="five wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">联系我</h4>
-                <!--list:列表（UI组件）-->
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Email：guoyx@vip.qq.com</a>
-                    <a href="#" class="item">QQ：805372666</a>
-                </div>
-            </div>
-            <div class="five wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">博客</h4>
-                <p class="m-text-thin m-text-spaced m-opacity-mini">
-                    这是我的个人博客，会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
-            </div>
-        </div>
-        <!--divider:分割线-->
-        <!--section:分割-->
-        <div class="ui section divider"></div>
-        <p class="m-text-thin m-text-spaced m-opacity-tiny">版权所有：xiaosaguo.net</p>
-    </div>
-</footer>
-
-<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
-<!--引入jquery-->
+<!--/*/<th:block th:replace="admin/_fragments::script">/*/-->
 <script src="../../static/js/jquery.min.js"></script>
-<!--引入semantic-ui js-->
 <script src="../../static/js/semantic.min.js"></script>
 <!--/*/</th:block>/*/-->
 
@@ -257,15 +162,6 @@
         });
     });
 
-    /*移动端隐藏元素*/
-    $('.menu.toggle').on('click', () => {
-        /*toggleClass，开关事件，开关样式*/
-        $('.m-item').toggleClass('m-mobile-hide');
-    });
-
-    $('.ui.dropdown').dropdown({
-        on: 'hover'
-    });
 
     function page(obj) {
         $("[name='page']").val($(obj).data("page"));
@@ -285,16 +181,7 @@
         $('[name="page"]').val(0);
         loadData();
     });
-
-    // 点击消息提示关闭按钮初始化
-    $('.message .close').on('click', function () {
-        $(this).closest('.message').transition('fade');
-    });
-
-    // $('#clear-btn').on('click', function () {
-    //     $('.ui.type.dropdown').dropdown('clear');
-    // });
-
 </script>
+
 </body>
 </html>
