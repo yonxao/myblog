@@ -139,7 +139,9 @@
     <!--<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>-->
     <script src="../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
     <script th:inline="javascript">
+        // 加载完页面，加载页脚最新推荐博客列表
         $('#footer-blog-container').load(/*[[@{/footer/blogs}]]*/"/footer/blogs");
+        // 移动端点击菜单按钮，打开关闭菜单切换
         $('.menu.toggle').on('click', function () {
             // toggleClass : 开关事件 -> 开关样式
             $('.m-item').toggleClass('m-mobile-hide');
