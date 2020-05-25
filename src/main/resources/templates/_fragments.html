@@ -37,10 +37,10 @@
             <a href="#" th:href="@{/}" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'">
                 <i class="home icon"></i><span th:text="#{nav.index}">首页</span>
             </a>
-            <a href="#" th:href="@{/types/-1}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
+            <a href="#" th:href="@{/types/0}" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'">
                 <i class="th icon"></i><span th:text="#{nav.types}">分类</span>
             </a>
-            <a href="#" th:href="@{/tags/-1}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
+            <a href="#" th:href="@{/tags/0}" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'">
                 <i class="tags icon"></i><span th:text="#{nav.tags}">标签</span>
             </a>
             <a href="#" th:href="@{/archives}" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'">

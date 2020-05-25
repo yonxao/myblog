@@ -74,8 +74,8 @@ public class IndexController {
                         Model model) {
         // 在分类页面，查出所有分类，并根据其含有的博客数量排序
         List<Type> typeList = typeService.listTop(999);
-        // -1 为默认值，如果直接点击导航时请求此接口，此时没有分类 id 值，需要获取实际查询出的第一个分类的 id
-        if (id == -1) {
+        // 0 为默认值，如果直接点击导航时请求此接口，此时没有分类 id 值，需要获取实际查询出的第一个分类的 id
+        if (id == 0) {
             id = typeList.get(0).getId();
         }
         model.addAttribute("types", typeList);
@@ -91,8 +91,8 @@ public class IndexController {
                        Model model) {
         // 在标签页面，查出所有标签，并根据其含有的博客数量排序
         List<Tag> tagList = tagService.listTop(999);
-        // -1 为默认值，如果直接点击导航时请求此接口，此时没有分类 id 值，需要获取实际查询出的第一个分类的 id
-        if (id == -1) {
+        // 0 为默认值，如果直接点击导航时请求此接口，此时没有分类 id 值，需要获取实际查询出的第一个分类的 id
+        if (id == 0) {
             id = tagList.get(0).getId();
         }
         model.addAttribute("tags", tagList);
@@ -122,12 +122,14 @@ public class IndexController {
 
     @GetMapping("/test")
     public Object test() {
-        /// int i = 9 / 0;
+        /// // int i = 9 / 0;
         /// String blog = null;
         /// if (blog == null) {
-        ///     throw new NotFoundException("博客不存在");
+        ///     // throw new NotFoundException("该博客不存在");
+        ///     // throw new DataInconsistencyException("存在多个相同名称的标签");
+        ///     throw new BadParamException("请求参数有误");
         /// }
-        /// System.out.println("----------index----------");
+        System.out.println("----------index----------");
         return null;
     }
 }
