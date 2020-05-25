@@ -12,7 +12,7 @@
     <!--自定义css-->
     <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
 
-    <title th:replace="${title}">博客片段</title>
+    <title th:replace="${title}">公共片段</title>
 </head>
 
 <body>
@@ -141,7 +141,7 @@
     <script th:inline="javascript">
         $('#footer-blog-container').load(/*[[@{/footer/blogs}]]*/"/footer/blogs");
         $('.menu.toggle').on('click', function () {
-            /*toggleClass，开关事件，开关样式*/
+            // toggleClass : 开关事件 -> 开关样式
             $('.m-item').toggleClass('m-mobile-hide');
         });
     </script>
