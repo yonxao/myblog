@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments :: head(~{::title})">
-    <meta charset="UTF-8">
-    <!--设置移动端访问缩放效果-->
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <!--引入semantic-ui框架-->
+<head th:replace="_fragments::head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 
@@ -15,44 +13,7 @@
 <body>
 
 <!--导航-->
-<!--ui:表示使用semantic提供的UI组件-->
-<!--inverted:反转颜色-->
-<!--attached:附加，连接，将两个片段连到一起，圆角-->
-<!--segment:片段（UI组件）-->
-<nav th:replace="_fragments :: menu(0)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
-    <!--container:容器，包裹的元素会有响应式展现效果-->
-    <div class="ui container">
-        <!--menu:菜单（UI组件）-->
-        <!--secondary:一种UI样式-->
-        <!--stackable:适应手机端响应样式，可堆叠的-->
-        <div class="ui inverted secondary stackable menu">
-            <!--header:头样式-->
-            <!--item:项（UI组件）-->
-            <h2 class="ui teal header item">我的博客</h2>
-            <!--i标签:显示斜体文本效果。-->
-            <a href="index.html" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
-            <a href="types.html" class="m-item item m-mobile-hide"><i class="th icon"></i>分类</a>
-            <a href="tags.html" class="active m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
-            <a href="archives.html" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
-            <a href="about.html" class="m-item item m-mobile-hide"><i class="user icon"></i>关于我</a>
-            <div class="right m-item item m-mobile-hide">
-                <!--transparent:透明效果-->
-                <div class="ui icon inverted transparent input">
-                    <!--placeholder:占位符、该属性提供可描述输入字段预期值的提示信息（hint）-->
-                    <!--placeholder:该提示会在输入字段为空时显示，并会在字段获得焦点时消失-->
-                    <!--placeholder:该属性适用于以下的 <input> 类型：text, search, url, telephone, email 以及 password-->
-                    <label for="search-btn"></label>
-                    <input id="search-btn" type="text" placeholder="搜索">
-                    <!--link:鼠标悬浮时，展示为小手的样式-->
-                    <i class="search link icon"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
-        <i class="sidebar icon"></i>
-    </a>
-</nav>
+<nav th:replace="_fragments::menu(0)" class="ui inverted attached segment"></nav>
 
 <!--中间内容-->
 <div class="m-padded-tb-big m-container-small">
@@ -69,7 +30,6 @@
                 </div>
             </div>
         </div>
-
         <!--文章列表-->
         <div class="ui top attached teal segment">
             <!--一篇文章-->
@@ -159,50 +119,8 @@
 <br>
 <br>
 
-<!--底部footer-->
-<!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
-<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
-    <div class="ui center aligned container">
-        <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
-        <!--divided:显示分割线-->
-        <div class="ui inverted divided stackable grid">
-            <div class="three wide column">
-                <div class="ui inverted link list">
-                    <div class="item">
-                        <img src="../static/images/wechat.png" class="ui rounded image" alt="微信二维码"
-                             style="width:110px">
-                    </div>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">最新博客</h4>
-                <!--list:列表（UI组件）-->
-                <div class="ui inverted link list">
-                    <a href="#" class="item">用户故事（user story）</a>
-                    <a href="#" class="item">刻意联系</a>
-                    <a href="#" class="item">semantic-ui快速入门</a>
-                </div>
-            </div>
-            <div class="five wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">联系我</h4>
-                <!--list:列表（UI组件）-->
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Email：guoyx@vip.qq.com</a>
-                    <a href="#" class="item">QQ：805372666</a>
-                </div>
-            </div>
-            <div class="five wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">博客</h4>
-                <p class="m-text-thin m-text-spaced m-opacity-mini">
-                    这是我的个人博客，会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
-            </div>
-        </div>
-        <!--divider:分割线-->
-        <!--section:分割-->
-        <div class="ui section divider"></div>
-        <p class="m-text-thin m-text-spaced m-opacity-tiny">版权所有：xiaosaguo.net</p>
-    </div>
-</footer>
+<!--页脚-->
+<footer th:replace="_fragments::footer" class="ui inverted vertical segment"></footer>
 
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <!--引入jquery-->
@@ -211,11 +129,5 @@
 <script src="../static/js/semantic.min.js"></script>
 <!--/*/</th:block>/*/-->
 
-<script>
-    $('.menu.toggle').on('click', function () {
-        /*toggleClass，开关事件，开关样式*/
-        $('.m-item').toggleClass('m-mobile-hide');
-    });
-</script>
 </body>
 </html>
