@@ -15,10 +15,9 @@
     <title th:replace="${title}">博客片段</title>
 </head>
 
-
 <body>
 
-<!--导航-->
+<!--前台导航栏-->
 <nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
     <!--container:容器，包裹的元素会有响应式展现效果-->
     <div class="ui container">
@@ -69,47 +68,27 @@
     </a>
 </nav>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-
-<!--底部footer-->
+<!--页脚-->
 <!--vertical:垂直，直角效果，如果两个片段相邻，中间还可以加个横线-->
-<footer th:fragment="footer" class="ui inverted vertical m-padded-tb-massive segment">
+<footer th:fragment="footer" class="ui inverted vertical m-padded-tb-large segment">
     <div class="ui center aligned container">
         <!--grid:表格，一行分为16格，占的格数必须是英文表示，不能用数字-->
         <!--divided:显示分割线-->
         <div class="ui inverted divided stackable grid">
+            <!--二维码-->
             <div class="three wide column">
                 <div class="ui inverted link list">
                     <div class="item">
-                        <img src="../static/images/wechat.png" class="ui rounded image" alt="微信二维码"
-                             th:src="@{/images/wechat.png}" style="width:110px">
+                        <img src="../static/images/wechat.png" th:src="@{/images/wechat.png}" alt=""
+                             class="ui rounded image" style="width:110px">
                     </div>
                 </div>
             </div>
-            <div class="three wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">最新博客</h4>
+            <!--最新推荐博客-->
+            <div class="four wide column">
+                <h4 class="ui header inverted m-text-spaced m-opacity-mini">最新推荐</h4>
                 <div id="footer-blog-container">
                     <!--list:列表（UI组件）-->
                     <div class="ui inverted link list" th:fragment="footerBlogList">
@@ -124,37 +103,40 @@
                     </div>
                 </div>
             </div>
-            <div class="five wide column">
+            <!--联系我-->
+            <div class="four wide column">
                 <h4 class="ui header inverted m-text-spaced m-opacity-mini">联系我</h4>
                 <!--list:列表（UI组件）-->
                 <div class="ui inverted link list">
-                    <a href="#" class="item" th:text="#{index.email}">Email：guoyx@vip.qq.com</a>
-                    <a href="#" class="item">QQ：805372666</a>
+                    <div class="item" th:text="#{index.email}">Email：guoyx@vip.qq.com</div>
+                    <div class="item">QQ：805372666</div>
                 </div>
             </div>
+            <!--博客说明-->
             <div class="five wide column">
-                <h4 class="ui header inverted m-text-spaced m-opacity-mini">博客</h4>
-                <p class="m-text-thin m-text-spaced m-opacity-mini">
-                    这是我的个人博客，会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</p>
+                <h4 class="ui header inverted m-text-spaced m-opacity-mini">欢迎你</h4>
+                <div class="ui inverted m-text-thin m-text-spaced m-opacity-tiny">
+                    我会在这里分享关于编程、工作、生活、写作、思考相关的内容，希望可以给来到这儿的你有所帮助。
+                </div>
             </div>
         </div>
         <!--divider:分割线-->
         <!--section:分割-->
         <div class="ui section divider"></div>
-        <p class="m-text-thin m-text-spaced m-opacity-tiny">版权所有：xiaosaguo.net</p>
+        <div class="m-text-thin m-text-spaced m-opacity-small">版权所有：xiaosaguo.net</div>
     </div>
 </footer>
 
 
 <th:block th:fragment="script">
     <!--引入jquery-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>-->
     <script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
     <!--引入semantic-ui js-->
+    <!--<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>-->
     <script src="../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
     <script th:inline="javascript">
-        // $(function () {
         $('#footer-blog-container').load(/*[[@{/footer/blogs}]]*/"/footer/blogs");
-        // });
     </script>
 </th:block>
 

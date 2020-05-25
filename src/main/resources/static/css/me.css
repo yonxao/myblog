@@ -123,8 +123,12 @@ body {
     opacity: 0.8 !important;
 }
 
-.m-opacity-tiny {
+.m-opacity-small {
     opacity: 0.6 !important;
+}
+
+.m-opacity-tiny {
+    opacity: 0.5 !important;
 }
 
 
