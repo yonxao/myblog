@@ -4,13 +4,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * description: 自定义404异常
+ * description: 自定义 404 异常
  *
  * @author xiaosaguo
- * @version 1 xiaosaguo 创建
+ * @date 2020/04/14
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
 
     public NotFoundException() {
     }
